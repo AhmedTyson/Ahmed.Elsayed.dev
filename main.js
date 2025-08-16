@@ -331,53 +331,31 @@ class CVDownloadManager {
 
   init() {
     if (downloadCvBtn) {
-      downloadCvBtn.addEventListener("click", async (e) => {
+      downloadCvBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        const url =
-          downloadCvBtn.dataset.url ||
-          "./assets/Ahmed_Elsayed_NET_Developer_CV.pdf";
-        const name =
-          downloadCvBtn.dataset.filename ||
-          "Ahmed_Elsayed_NET_Developer_CV.pdf";
-        await this.downloadFile(url, name);
+        this.downloadCV();
       });
     }
 
     if (downloadResumeBtn) {
-      downloadResumeBtn.addEventListener("click", async (e) => {
+      downloadResumeBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        const url =
-          downloadResumeBtn.dataset.url ||
-          "./assets/Ahmed_Elsayed_NET_Developer_CV.pdf";
-        const name =
-          downloadResumeBtn.dataset.filename ||
-          "Ahmed_Elsayed_NET_Developer_Resume.pdf";
-        await this.downloadFile(url, name);
+        this.downloadCV();
       });
     }
   }
 
-  async downloadFile(url, filename) {
-    try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
-      const blob = await res.blob();
-      const objectUrl = URL.createObjectURL(blob);
+  downloadCV() {
+    const filePath = "./assets/Ahmed_Elsayed_NET_Developer_CV.pdf"; // ensure this file exists
 
-      const link = document.createElement("a");
-      link.href = objectUrl;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(objectUrl);
+    const link = document.createElement("a");
+    link.href = filePath;
+    link.setAttribute("download", "Ahmed_Elsayed_NET_Developer_CV.pdf");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 
-      this.showDownloadMessage();
-    } catch (err) {
-      // Fallback: open in a new tab if download fails (e.g., file://)
-      console.warn("Direct download failed, opening in new tab:", err);
-      window.open(url, "_blank");
-    }
+    this.showDownloadMessage();
   }
 
   showDownloadMessage() {
