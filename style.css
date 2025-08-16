@@ -1845,204 +1845,141 @@ body {
   display: flex;
   align-items: center;
   text-align: center;
+  justify-content: center;
+  padding: 0 var(--space-xs);
 }
 
-/* Remove the separate location card styles */
-.contact-location-card,
-.contact-location-icon,
-.contact-location-title,
-.contact-location-text {
-  display: none !important;
+/* Special styling for email card text */
+.contact-card[href*="mailto"] .contact-card-text {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+  background: rgba(var(--color-primary-rgb), 0.1);
+  padding: var(--space-sm);
+  border-radius: var(--radius-base);
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 1px solid rgba(var(--color-primary-rgb), 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
 }
 
-/* Enhanced Mobile Responsiveness for Contact Section */
-@media (max-width: 1200px) {
-  .contact-cards {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-md);
-    max-width: 900px;
-  }
+.contact-card[href*="mailto"]:hover .contact-card-text {
+  background: rgba(var(--color-primary-rgb), 0.15);
+  border-color: rgba(var(--color-primary-rgb), 0.3);
+  color: var(--color-secondary);
 }
 
+/* GitHub card text styling */
+.contact-card[href*="github"] .contact-card-text {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* LinkedIn card text styling */
+.contact-card[href*="linkedin"] .contact-card-text {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Location card text (already has special styling) */
+.contact-card.location-card .contact-card-text {
+  color: white;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Enhanced Mobile Responsiveness for Contact Card Text */
 @media (max-width: 992px) {
-  .contact-cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
-    max-width: 600px;
-  }
-
-  .contact-card {
-    min-height: 200px;
-    max-height: 240px;
-    padding: var(--space-lg);
-  }
-
-  .contact-card-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 1.6rem;
-  }
-
-  .contact-card-title {
-    font-size: 1.1rem;
-  }
-
   .contact-card-text {
     font-size: 0.9rem;
+  }
+
+  .contact-card[href*="mailto"] .contact-card-text {
+    font-size: 0.75rem;
+    padding: var(--space-sm);
+    white-space: nowrap;
   }
 }
 
 @media (max-width: 768px) {
-  #contact {
-    padding: var(--space-xl) 0;
-  }
-
-  .contact-content {
-    gap: var(--space-xl);
-    padding: 0 var(--space-md);
-  }
-
-  .contact-intro {
-    padding: var(--space-lg);
-    margin: 0 var(--space-sm);
-  }
-
-  .contact-text {
-    font-size: 1rem;
-    margin-bottom: var(--space-lg);
-  }
-
-  .contact-cta {
-    padding: var(--space-md) var(--space-lg);
-    font-size: 1rem;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .contact-cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
-    margin: var(--space-lg) 0;
-    max-width: 500px;
-  }
-
-  .contact-card {
-    padding: var(--space-lg);
-    min-height: 180px;
-    max-height: 200px;
-    width: 100%;
-    aspect-ratio: 1.3 / 1;
-  }
-
-  .contact-card-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 1.5rem;
-    margin-bottom: var(--space-md);
-  }
-
-  .contact-card-title {
-    font-size: 1.1rem;
-    margin-bottom: var(--space-xs);
-  }
-
   .contact-card-text {
     font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .contact-card[href*="mailto"] .contact-card-text {
+    font-size: 0.7rem;
+    padding: var(--space-xs) var(--space-sm);
+    line-height: 1.3;
+    white-space: normal;
+    word-break: break-all;
+    text-overflow: unset;
+    overflow: visible;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5rem;
+    max-width: calc(100% - var(--space-md));
+    margin: 0 auto;
   }
 }
 
 @media (max-width: 576px) {
-  .contact-intro {
-    padding: var(--space-md);
-    margin: 0 var(--space-xs);
-  }
-
-  .contact-cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-sm);
-    max-width: 380px;
-  }
-
-  .contact-card {
-    padding: var(--space-md);
-    min-height: 170px;
-    max-height: 190px;
-    aspect-ratio: 1.4 / 1;
-  }
-
-  .contact-card-icon {
-    width: 55px;
-    height: 55px;
-    font-size: 1.3rem;
-    margin-bottom: var(--space-sm);
-  }
-
-  .contact-card-title {
-    font-size: 1rem;
-    margin-bottom: var(--space-xs);
-  }
-
   .contact-card-text {
     font-size: 0.85rem;
     line-height: 1.4;
   }
+
+  .contact-card[href*="mailto"] .contact-card-text {
+    font-size: 0.65rem;
+    padding: var(--space-xs);
+    border-radius: var(--radius-sm);
+    min-height: 2rem;
+    max-width: calc(100% - var(--space-sm));
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
 }
 
 @media (max-width: 480px) {
-  .contact-cards {
-    grid-template-columns: 1fr;
-    max-width: 320px;
-    gap: var(--space-xs);
-  }
-
-  .contact-card {
-    padding: var(--space-sm) var(--space-md);
-    min-height: 160px;
-    max-height: 180px;
-    aspect-ratio: 1.5 / 1;
-  }
-
-  .contact-card-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.2rem;
-    margin-bottom: var(--space-xs);
-  }
-
-  .contact-card-title {
-    font-size: 0.95rem;
-    margin-bottom: var(--space-xs);
-  }
-
   .contact-card-text {
     font-size: 0.8rem;
     line-height: 1.3;
   }
+
+  .contact-card[href*="mailto"] .contact-card-text {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    max-width: calc(100% - var(--space-xs));
+  }
 }
 
 @media (max-width: 400px) {
-  .contact-cards {
-    max-width: 280px;
-  }
-
-  .contact-card {
-    padding: var(--space-sm);
-    min-height: 150px;
-    max-height: 170px;
-  }
-
-  .contact-card-icon {
-    width: 45px;
-    height: 45px;
-    font-size: 1.1rem;
-  }
-
-  .contact-card-title {
-    font-size: 0.9rem;
-  }
-
   .contact-card-text {
     font-size: 0.75rem;
+  }
+
+  .contact-card[href*="mailto"] .contact-card-text {
+    font-size: 0.55rem;
+    padding: 0.25rem 0.4rem;
+    border-radius: 4px;
+    max-width: calc(100% - 0.5rem);
+    line-height: 1.1;
   }
 }
 
