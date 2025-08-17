@@ -10,128 +10,6 @@
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="project-styles.css" />
     <style>
-        .project-hero {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            color: white;
-            padding: 4rem 0 2rem;
-            margin-top: 80px;
-        }
-        
-        .project-nav {
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1rem 0;
-            position: sticky;
-            top: 80px;
-            z-index: 100;
-        }
-        
-        .project-content {
-            padding: 3rem 0;
-        }
-        
-        .project-section {
-            margin-bottom: 3rem;
-        }
-        
-        .project-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .feature-card {
-            background: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .feature-icon {
-            color: var(--color-primary);
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
-        }
-        
-        .tech-badge {
-            background: var(--color-primary);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-        
-        .project-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--color-primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .project-btn:hover {
-            background: var(--color-secondary);
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        .project-btn.secondary {
-            background: transparent;
-            color: var(--color-primary);
-            border: 2px solid var(--color-primary);
-        }
-        
-        .project-btn.secondary:hover {
-            background: var(--color-primary);
-            color: white;
-        }
-        
         .java-highlight {
             background: linear-gradient(45deg, #f89820 0%, #ed8f2c 100%);
             -webkit-background-clip: text;
@@ -154,14 +32,14 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html#projects">All Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html#contact">Contact</a>
-                    </li>
+              <a class="nav-link" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">All Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html#contact">Contact</a>
+            </li>
                 </ul>
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
                     <i class="fas fa-moon theme-icon"></i>
@@ -201,25 +79,7 @@
         </div>
     </section>
 
-    <!-- Project Navigation -->
-    <nav class="project-nav">
-        <div class="container">
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#overview">Overview</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#features">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#gallery">Gallery</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#technical">Technical Details</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    
 
     <!-- Project Content -->
     <main class="project-content">
@@ -375,18 +235,20 @@
 
             <!-- Navigation to other projects -->
             <section class="project-section">
-                <div class="row">
-                    <div class="col-md-6">
-                        <a href="portfolio-website.html" class="project-btn secondary">
-                            <i class="fas fa-arrow-left"></i>
-                            Previous: Portfolio Website
-                        </a>
-                    </div>
-                    <div class="col-md-6 text-md-end">
-                        <a href="library-management-system.html" class="project-btn">
-                            Next: Library Management
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
+                <div class="project-navigation">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="portfolio-website.html" class="project-btn secondary">
+                                <i class="fas fa-arrow-left"></i>
+                                Previous: Portfolio Website
+                            </a>
+                        </div>
+                        <div class="col-md-6 text-md-end">
+                            <a href="library-management-system.html" class="project-btn">
+                                Next: Library Management
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>

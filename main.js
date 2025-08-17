@@ -851,7 +851,7 @@ class PhotoUploadManager {
 // Project Page Navigation
 class ProjectPageNavigation {
   constructor() {
-    this.projectNav = document.querySelector('.project-nav');
+    this.projectNav = document.querySelector(".project-nav");
     if (this.projectNav) {
       this.init();
     }
@@ -862,29 +862,37 @@ class ProjectPageNavigation {
   }
 
   setupProjectNavigation() {
-    const projectNavLinks = this.projectNav.querySelectorAll('.nav-link');
+    const projectNavLinks = this.projectNav.querySelectorAll(".nav-link");
 
-    projectNavLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
+    projectNavLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
         e.preventDefault();
 
-        const targetId = link.getAttribute('href').substring(1);
+        const targetId = link.getAttribute("href").substring(1);
         const targetSection = document.getElementById(targetId);
 
         if (targetSection) {
           // Update active nav state
-          projectNavLinks.forEach(navLink => navLink.classList.remove('active'));
-          link.classList.add('active');
+          projectNavLinks.forEach((navLink) =>
+            navLink.classList.remove("active")
+          );
+          link.classList.add("active");
 
           // Calculate scroll position accounting for sticky nav
-          const navHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+          const navHeight =
+            document.querySelector(".navbar")?.offsetHeight || 80;
           const projectNavHeight = this.projectNav.offsetHeight || 60;
-          const targetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - navHeight - projectNavHeight - 20;
+          const targetTop =
+            targetSection.getBoundingClientRect().top +
+            window.pageYOffset -
+            navHeight -
+            projectNavHeight -
+            20;
 
           // Smooth scroll to section
           window.scrollTo({
             top: Math.max(0, targetTop),
-            behavior: 'smooth'
+            behavior: "smooth",
           });
         }
       });
@@ -892,34 +900,38 @@ class ProjectPageNavigation {
 
     // Update active state on scroll for project pages
     if (projectNavLinks.length > 0) {
-      window.addEventListener('scroll', () => {
+      window.addEventListener("scroll", () => {
         this.updateActiveProjectNav(projectNavLinks);
       });
     }
   }
 
   updateActiveProjectNav(projectNavLinks) {
-    const navHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+    const navHeight = document.querySelector(".navbar")?.offsetHeight || 80;
     const projectNavHeight = this.projectNav.offsetHeight || 60;
-    const scrollPosition = window.pageYOffset + navHeight + projectNavHeight + 50;
+    const scrollPosition =
+      window.pageYOffset + navHeight + projectNavHeight + 50;
 
-    const sections = document.querySelectorAll('.project-section[id]');
-    let activeId = '';
+    const sections = document.querySelectorAll(".project-section[id]");
+    let activeId = "";
 
-    sections.forEach(section => {
+    sections.forEach((section) => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
 
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+      if (
+        scrollPosition >= sectionTop &&
+        scrollPosition < sectionTop + sectionHeight
+      ) {
         activeId = section.id;
       }
     });
 
     if (activeId) {
-      projectNavLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${activeId}`) {
-          link.classList.add('active');
+      projectNavLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${activeId}`) {
+          link.classList.add("active");
         }
       });
     }
@@ -1058,3 +1070,19 @@ class App {
 
 // Initialize the application
 new App();
+
+// Add this script after the DOM is loaded
+document.addEventListener("DOMContentLoaded", function () {
+  let lastScroll = 0;
+  const nav = document.querySelector(".project-nav");
+  window.addEventListener("scroll", function () {
+    if (window.innerWidth <= 768) {
+      if (window.scrollY > lastScroll && window.scrollY > 80) {
+        nav.classList.add("hide-on-scroll");
+      } else {
+        nav.classList.remove("hide-on-scroll");
+      }
+      lastScroll = window.scrollY;
+    }
+  });
+});
