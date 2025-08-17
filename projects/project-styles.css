@@ -1,0 +1,466 @@
+/* Enhanced Project Page Styles */
+
+/* Hero Section Enhancements */
+.project-hero {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    padding: 6rem 0 3rem;
+    margin-top: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.project-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.project-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.project-hero .lead {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    line-height: 1.6;
+}
+
+/* Enhanced Tech Stack */
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 2rem 0;
+}
+
+.tech-badge {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
+}
+
+.tech-badge:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+}
+
+/* Enhanced Project Navigation */
+.project-nav {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 80px;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.project-nav .nav-pills .nav-link {
+    border-radius: 25px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin: 0 0.5rem;
+    color: var(--text-secondary);
+}
+
+.project-nav .nav-pills .nav-link.active {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(192, 73, 88, 0.3);
+}
+
+.project-nav .nav-pills .nav-link:hover:not(.active) {
+    background: rgba(192, 73, 88, 0.1);
+    color: var(--color-primary);
+}
+
+/* Enhanced Project Content */
+.project-content {
+    padding: 4rem 0;
+}
+
+.project-section {
+    margin-bottom: 5rem;
+    scroll-margin-top: 160px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    border-radius: 2px;
+}
+
+/* Enhanced Feature Cards */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.feature-card {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border-color: rgba(192, 73, 88, 0.2);
+}
+
+.feature-icon {
+    color: var(--color-primary);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1);
+    color: var(--color-secondary);
+}
+
+.feature-card h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Enhanced Gallery */
+.project-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.project-image {
+    width: 100%;
+    height: 240px;
+    background: linear-gradient(135deg, var(--bg-card), rgba(192, 73, 88, 0.05));
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(192, 73, 88, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.project-image:hover::before {
+    transform: translateX(100%);
+}
+
+.project-image:hover {
+    transform: scale(1.02);
+    border-color: var(--color-primary);
+    box-shadow: 0 15px 30px rgba(192, 73, 88, 0.2);
+    color: var(--color-primary);
+}
+
+.project-image i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.project-image:hover i {
+    transform: scale(1.2);
+}
+
+/* Enhanced Project Info Card */
+.project-info-card {
+    background: linear-gradient(135deg, var(--bg-card), rgba(192, 73, 88, 0.02));
+    border: 1px solid rgba(192, 73, 88, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    position: sticky;
+    top: 180px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.project-info-card .card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.project-info-card ul li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.project-info-card ul li:last-child {
+    border-bottom: none;
+}
+
+.project-info-card strong {
+    color: var(--color-primary);
+}
+
+/* Enhanced Buttons */
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.project-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.4s ease;
+    border: none;
+    box-shadow: 0 4px 15px rgba(192, 73, 88, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.project-btn:hover::before {
+    left: 100%;
+}
+
+.project-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(192, 73, 88, 0.4);
+    color: white;
+}
+
+.project-btn.secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 4px 15px rgba(192, 73, 88, 0.1);
+}
+
+.project-btn.secondary:hover {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 8px 25px rgba(192, 73, 88, 0.3);
+}
+
+/* Enhanced Technical Details */
+.tech-details-section {
+    background: linear-gradient(135deg, var(--bg-secondary), rgba(192, 73, 88, 0.02));
+    border-radius: 20px;
+    padding: 3rem;
+    margin: 3rem 0;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.list-group-flush .list-group-item {
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 1rem 0;
+    background: transparent;
+}
+
+.list-group-flush .list-group-item:hover {
+    background: rgba(192, 73, 88, 0.05);
+    border-radius: 8px;
+    padding-left: 1rem;
+    transition: all 0.3s ease;
+}
+
+.list-group-flush .list-group-item strong {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+/* Project Navigation Between Pages */
+.project-navigation {
+    background: linear-gradient(135deg, var(--bg-secondary), rgba(192, 73, 88, 0.02));
+    border-radius: 20px;
+    padding: 2rem;
+    margin: 4rem 0;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .project-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .project-hero .lead {
+        font-size: 1.2rem;
+    }
+    
+    .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .project-gallery {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .project-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .project-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.project-section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Special highlights for different project types */
+.python-highlight {
+    background: linear-gradient(45deg, #3776ab 0%, #ffd43b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.ai-highlight {
+    background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.web-highlight {
+    background: linear-gradient(45deg, #ff6b6b 0%, #4ecdc4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.java-highlight {
+    background: linear-gradient(45deg, #f89820 0%, #ed8f2c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}

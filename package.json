@@ -1,0 +1,16 @@
+{
+  "name": "ahmed-elsayed-portfolio",
+  "version": "1.0.0",
+  "description": "Ahmed Elsayed Abdel-Al - Portfolio Website",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 3000 -c-1",
+    "dev": "npx http-server . -p 3000 -c-1"
+  },
+  "keywords": ["portfolio", "developer", "dotnet", "python"],
+  "author": "Ahmed Elsayed Abdel-Al",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

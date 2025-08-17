@@ -848,6 +848,84 @@ class PhotoUploadManager {
   }
 }
 
+// Project Page Navigation
+class ProjectPageNavigation {
+  constructor() {
+    this.projectNav = document.querySelector('.project-nav');
+    if (this.projectNav) {
+      this.init();
+    }
+  }
+
+  init() {
+    this.setupProjectNavigation();
+  }
+
+  setupProjectNavigation() {
+    const projectNavLinks = this.projectNav.querySelectorAll('.nav-link');
+
+    projectNavLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const targetId = link.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+
+        if (targetSection) {
+          // Update active nav state
+          projectNavLinks.forEach(navLink => navLink.classList.remove('active'));
+          link.classList.add('active');
+
+          // Calculate scroll position accounting for sticky nav
+          const navHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+          const projectNavHeight = this.projectNav.offsetHeight || 60;
+          const targetTop = targetSection.getBoundingClientRect().top + window.pageYOffset - navHeight - projectNavHeight - 20;
+
+          // Smooth scroll to section
+          window.scrollTo({
+            top: Math.max(0, targetTop),
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Update active state on scroll for project pages
+    if (projectNavLinks.length > 0) {
+      window.addEventListener('scroll', () => {
+        this.updateActiveProjectNav(projectNavLinks);
+      });
+    }
+  }
+
+  updateActiveProjectNav(projectNavLinks) {
+    const navHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+    const projectNavHeight = this.projectNav.offsetHeight || 60;
+    const scrollPosition = window.pageYOffset + navHeight + projectNavHeight + 50;
+
+    const sections = document.querySelectorAll('.project-section[id]');
+    let activeId = '';
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        activeId = section.id;
+      }
+    });
+
+    if (activeId) {
+      projectNavLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${activeId}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+  }
+}
+
 // App Initialization
 class App {
   constructor() {
@@ -878,6 +956,7 @@ class App {
       new SkillsAnimation();
       new PortfolioFilter();
       new PhotoUploadManager();
+      new ProjectPageNavigation();
 
       // Initialize typing animation
       if (typingText) {
