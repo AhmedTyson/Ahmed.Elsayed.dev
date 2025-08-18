@@ -861,9 +861,12 @@ class ProjectPageNavigation {
 
   init() {
     this.setupProjectNavigation();
+    this.setupMobileScrollBehavior();
   }
 
   setupProjectNavigation() {
+    if (!this.projectNav) return;
+
     const projectNavLinks = this.projectNav.querySelectorAll(".nav-link");
 
     projectNavLinks.forEach((link) => {
@@ -909,6 +912,8 @@ class ProjectPageNavigation {
   }
 
   updateActiveProjectNav(projectNavLinks) {
+    if (!this.projectNav) return;
+
     const navHeight = document.querySelector(".navbar")?.offsetHeight || 80;
     const projectNavHeight = this.projectNav.offsetHeight || 60;
     const scrollPosition =
@@ -937,6 +942,23 @@ class ProjectPageNavigation {
         }
       });
     }
+  }
+
+  setupMobileScrollBehavior() {
+    if (!this.projectNav) return;
+
+    let lastScroll = 0;
+
+    window.addEventListener("scroll", () => {
+      if (window.innerWidth <= 768) {
+        if (window.scrollY > lastScroll && window.scrollY > 80) {
+          this.projectNav.classList.add("hide-on-scroll");
+        } else {
+          this.projectNav.classList.remove("hide-on-scroll");
+        }
+        lastScroll = window.scrollY;
+      }
+    });
   }
 }
 
@@ -1152,18 +1174,5 @@ class App {
 // Initialize the application
 new App();
 
-// Add this script after the DOM is loaded
-document.addEventListener("DOMContentLoaded", function () {
-  let lastScroll = 0;
-  const nav = document.querySelector(".project-nav");
-  window.addEventListener("scroll", function () {
-    if (window.innerWidth <= 768) {
-      if (window.scrollY > lastScroll && window.scrollY > 80) {
-        nav.classList.add("hide-on-scroll");
-      } else {
-        nav.classList.remove("hide-on-scroll");
-      }
-      lastScroll = window.scrollY;
-    }
-  });
-});
+// Mobile project navigation scroll handler (handled in ProjectPageNavigation class)
+// This duplicate handler has been removed to prevent conflicts
