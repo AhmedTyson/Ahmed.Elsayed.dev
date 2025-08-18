@@ -1,271 +1,355 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaNova - Java Learning Academy - Ahmed Elsayed</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="project-styles.css" />
     <style>
-        .java-highlight {
-            background: linear-gradient(45deg, #f89820 0%, #ed8f2c 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 600;
-        }
+      .java-highlight {
+        background: linear-gradient(45deg, #f89820 0%, #ed8f2c 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 600;
+      }
     </style>
-</head>
-<body data-theme="light">
+  </head>
+  <body data-theme="light">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-            <a class="navbar-brand" href="../index.html">
-                <i class="fas fa-arrow-left me-2"></i>Ahmed Elsayed
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">
+          <i class="fas fa-arrow-left me-2"></i>Ahmed Elsayed
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
               <a class="nav-link" href="../index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./index.html">All Projects</a>
+              <a class="nav-link" href="/projects/main-projects.html"
+                >All Projects</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../index.html#contact">Contact</a>
             </li>
-                </ul>
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon theme-icon"></i>
-                </button>
-            </div>
+          </ul>
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            aria-label="Toggle theme"
+          >
+            <i class="fas fa-moon theme-icon"></i>
+          </button>
         </div>
+      </div>
     </nav>
 
     <!-- Project Hero -->
     <section class="project-hero">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h1 class="display-4 fw-bold mb-3">JavaNova - Java Learning Academy</h1>
-                    <p class="lead mb-4">Modern educational platform for Java development learning with interactive UI and comprehensive course structure</p>
-                    <div class="tech-stack">
-                        <span class="tech-badge">HTML5</span>
-                        <span class="tech-badge">CSS3</span>
-                        <span class="tech-badge">JavaScript</span>
-                        <span class="tech-badge">Educational Design</span>
-                        <span class="tech-badge">Responsive UI</span>
-                    </div>
-                </div>
-                <div class="col-lg-4 text-lg-end">
-                    <div class="project-links">
-                        <a href="https://ahmedtyson.github.io/JavaNova-project/javanova.html" target="_blank" class="project-btn">
-                            <i class="fas fa-external-link-alt"></i>
-                            Live Demo
-                        </a>
-                        <a href="https://github.com/AhmedTyson/JavaNova-project" target="_blank" class="project-btn secondary">
-                            <i class="fab fa-github"></i>
-                            View Code
-                        </a>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <h1 class="display-4 fw-bold mb-3">
+              JavaNova - Java Learning Academy
+            </h1>
+            <p class="lead mb-4">
+              Modern educational platform for Java development learning with
+              interactive UI and comprehensive course structure
+            </p>
+            <div class="tech-stack">
+              <span class="tech-badge">HTML5</span>
+              <span class="tech-badge">CSS3</span>
+              <span class="tech-badge">JavaScript</span>
+              <span class="tech-badge">Educational Design</span>
+              <span class="tech-badge">Responsive UI</span>
             </div>
+          </div>
+          <div class="col-lg-4 text-lg-end">
+            <div class="project-links">
+              <a
+                href="https://ahmedtyson.github.io/JavaNova-project/javanova.html"
+                target="_blank"
+                class="project-btn"
+              >
+                <i class="fas fa-external-link-alt"></i>
+                Live Demo
+              </a>
+              <a
+                href="https://github.com/AhmedTyson/JavaNova-project"
+                target="_blank"
+                class="project-btn secondary"
+              >
+                <i class="fab fa-github"></i>
+                View Code
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
-
-    
 
     <!-- Project Content -->
     <main class="project-content">
-        <div class="container">
-            <!-- Overview Section -->
-            <section id="overview" class="project-section">
-                <h2 class="section-title">Project Overview</h2>
-                <div class="row">
-                    <div class="col-lg-8">
-                        <p class="lead">JavaNova is a modern, interactive educational platform designed to make <span class="java-highlight">Java programming</span> accessible and engaging for students. Built as a youth-driven academy, it features a clean, modern interface with comprehensive course structures and community-driven learning approach.</p>
-                        <h3>Key Highlights</h3>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Interactive learning platform with modern UI design</li>
-                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Comprehensive course structure covering Java fundamentals</li>
-                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Youth-driven educational movement philosophy</li>
-                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Community-focused learning environment</li>
-                            <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Responsive design with gradient aesthetics</li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="project-info-card">
-                            <h5 class="card-title">Project Info</h5>
-                            <ul class="list-unstyled">
-                                <li><strong>Date:</strong> December 2024</li>
-                                <li><strong>Category:</strong> Educational Platform</li>
-                                <li><strong>Status:</strong> Live & Active</li>
-                                <li><strong>Team Size:</strong> Solo Project</li>
-                                <li><strong>Duration:</strong> 4 weeks</li>
-                                <li><strong>Pages:</strong> 8 sections</li>
-                                <li><strong>Target:</strong> Java learners</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
+      <div class="container">
+        <!-- Overview Section -->
+        <section id="overview" class="project-section">
+          <h2 class="section-title">Project Overview</h2>
+          <div class="row">
+            <div class="col-lg-8">
+              <p class="lead">
+                JavaNova is a modern, interactive educational platform designed
+                to make
+                <span class="java-highlight">Java programming</span> accessible
+                and engaging for students. Built as a youth-driven academy, it
+                features a clean, modern interface with comprehensive course
+                structures and community-driven learning approach.
+              </p>
+              <h3>Key Highlights</h3>
+              <ul class="list-unstyled">
+                <li class="mb-2">
+                  <i class="fas fa-check-circle text-success me-2"></i
+                  >Interactive learning platform with modern UI design
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-check-circle text-success me-2"></i
+                  >Comprehensive course structure covering Java fundamentals
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-check-circle text-success me-2"></i
+                  >Youth-driven educational movement philosophy
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-check-circle text-success me-2"></i
+                  >Community-focused learning environment
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-check-circle text-success me-2"></i
+                  >Responsive design with gradient aesthetics
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-4">
+              <div class="project-info-card">
+                <h5 class="card-title">Project Info</h5>
+                <ul class="list-unstyled">
+                  <li><strong>Date:</strong> December 2024</li>
+                  <li><strong>Category:</strong> Educational Platform</li>
+                  <li><strong>Status:</strong> Live & Active</li>
+                  <li><strong>Team Size:</strong> Solo Project</li>
+                  <li><strong>Duration:</strong> 4 weeks</li>
+                  <li><strong>Pages:</strong> 8 sections</li>
+                  <li><strong>Target:</strong> Java learners</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <!-- Features Section -->
-            <section id="features" class="project-section">
-                <h2 class="section-title">Key Features</h2>
-                <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fab fa-java"></i>
-                        </div>
-                        <h4>Java Mastery Courses</h4>
-                        <p>Comprehensive Java programming courses from basics to advanced enterprise application development with hands-on projects.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h4>Community Learning</h4>
-                        <p>Student-to-student learning environment where knowledge is shared collaboratively, fostering a supportive educational community.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h4>Interactive Education</h4>
-                        <p>Engaging educational approach with simplified concepts, practical examples, and real-world project applications.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <h4>Modern Interface</h4>
-                        <p>Clean, intuitive user interface with modern design principles, gradient aesthetics, and responsive layout for all devices.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h4>Career Focused</h4>
-                        <p>Curriculum designed to prepare students for real-world Java development roles with enterprise-level skills and best practices.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <h4>Success Stories</h4>
-                        <p>Showcase of student achievements and success stories, highlighting the effectiveness of the learning methodology.</p>
-                    </div>
-                </div>
-            </section>
+        <!-- Features Section -->
+        <section id="features" class="project-section">
+          <h2 class="section-title">Key Features</h2>
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fab fa-java"></i>
+              </div>
+              <h4>Java Mastery Courses</h4>
+              <p>
+                Comprehensive Java programming courses from basics to advanced
+                enterprise application development with hands-on projects.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h4>Community Learning</h4>
+              <p>
+                Student-to-student learning environment where knowledge is
+                shared collaboratively, fostering a supportive educational
+                community.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <h4>Interactive Education</h4>
+              <p>
+                Engaging educational approach with simplified concepts,
+                practical examples, and real-world project applications.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-laptop-code"></i>
+              </div>
+              <h4>Modern Interface</h4>
+              <p>
+                Clean, intuitive user interface with modern design principles,
+                gradient aesthetics, and responsive layout for all devices.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <h4>Career Focused</h4>
+              <p>
+                Curriculum designed to prepare students for real-world Java
+                development roles with enterprise-level skills and best
+                practices.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">
+                <i class="fas fa-trophy"></i>
+              </div>
+              <h4>Success Stories</h4>
+              <p>
+                Showcase of student achievements and success stories,
+                highlighting the effectiveness of the learning methodology.
+              </p>
+            </div>
+          </div>
+        </section>
 
-            <!-- Gallery Section -->
-            <section id="gallery" class="project-section">
-                <h2 class="section-title">Project Gallery</h2>
-                <div class="project-gallery">
-                    <div class="project-image">
-                        <i class="fas fa-home me-2"></i>
-                        Landing Page & Hero
-                    </div>
-                    <div class="project-image">
-                        <i class="fas fa-book me-2"></i>
-                        Course Catalog
-                    </div>
-                    <div class="project-image">
-                        <i class="fas fa-users me-2"></i>
-                        Community Section
-                    </div>
-                    <div class="project-image">
-                        <i class="fas fa-star me-2"></i>
-                        Success Stories
-                    </div>
-                </div>
-            </section>
+        <!-- Gallery Section -->
+        <section id="gallery" class="project-section">
+          <h2 class="section-title">Project Gallery</h2>
+          <div class="project-gallery">
+            <div class="project-image">
+            <span
+                class="gallery-img-container"
+                onclick="window.open('https://ahmedtyson.github.io/JavaNova-project/javanova.html', '_blank')"
+            >
+                <iframe
+                src="https://ahmedtyson.github.io/JavaNova-project/javanova.html"
+                class="gallery-demo"
+                loading="lazy"
+                onerror="this.style.display='none';this.parentNode.querySelector('.gallery-img').style.display='block';"
+                title="JavaNova Landing Page & Hero"
+                tabindex="-1"
+                ></iframe>
+                <img
+                src="../assets/javanova-demo.png"
+                alt="JavaNova Landing Page & Hero"
+                class="gallery-img"
+                style="display: none"
+                onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+                />
+                <span class="gallery-fallback" style="display: none">
+                <i class="fas fa-home me-2"></i>
+                Landing Page & Hero
+                </span>
+                <div class="gallery-laptop-base"></div>
+            </span>
+            </div>
+            <div class="project-image">
+              <span class="gallery-img-container">
+                <img
+                  src="images/javanova-courses.jpg"
+                  alt="JavaNova Course Catalog"
+                  class="gallery-img"
+                  onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+                />
+                <span class="gallery-fallback" style="display: none">
+                  <i class="fas fa-book me-2"></i>
+                  Course Catalog
+                </span>
+              </span>
+            </div>
+            <div class="project-image">
+              <span class="gallery-img-container">
+                <img
+                  src="images/javanova-community.jpg"
+                  alt="JavaNova Community Section"
+                  class="gallery-img"
+                  onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+                />
+                <span class="gallery-fallback" style="display: none">
+                  <i class="fas fa-users me-2"></i>
+                  Community Section
+                </span>
+              </span>
+            </div>
+            <div class="project-image">
+              <span class="gallery-img-container">
+                <img
+                  src="../assets/javanova-Success-Stories.png"
+                  alt="JavaNova Success Stories"
+                  class="gallery-img"
+                  style="display: none"
+                  onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+                />
+                <span class="gallery-fallback" style="display: none">
+                  <i class="fas fa-star me-2"></i>
+                  Success Stories
+                </span>
+                <div class="gallery-laptop-base"></div>
+              </span>
+            </div>
+          </div>
+        </section>
 
-            <!-- Technical Details Section -->
-            <section id="technical" class="project-section">
-                <h2 class="section-title">Technical Implementation</h2>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h3>Frontend Technologies</h3>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong>HTML5:</strong> Semantic structure and accessibility</li>
-                            <li class="list-group-item"><strong>CSS3:</strong> Modern styling with gradients and animations</li>
-                            <li class="list-group-item"><strong>JavaScript:</strong> Interactive functionality and UX</li>
-                            <li class="list-group-item"><strong>Responsive Design:</strong> Mobile-first approach</li>
-                            <li class="list-group-item"><strong>Modern UI/UX:</strong> Clean, educational-focused design</li>
-                        </ul>
-                        
-                        <h3 class="mt-4">Design Principles</h3>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong>Educational Focus:</strong> Learning-oriented interface design</li>
-                            <li class="list-group-item"><strong>Accessibility:</strong> WCAG compliant for inclusive learning</li>
-                            <li class="list-group-item"><strong>Visual Hierarchy:</strong> Clear content organization</li>
-                            <li class="list-group-item"><strong>Engagement:</strong> Interactive elements for student motivation</li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-6">
-                        <h3>Educational Platform Features</h3>
-                        <p>JavaNova represents a modern approach to Java education, focusing on practical learning and community engagement:</p>
-                        
-                        <h4>Platform Philosophy</h4>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><strong>Student-Centered:</strong> Learning designed by and for students</li>
-                            <li class="mb-2"><strong>Practical Approach:</strong> Real projects in every lesson</li>
-                            <li class="mb-2"><strong>Community Driven:</strong> Peer-to-peer learning environment</li>
-                            <li class="mb-2"><strong>Modern Methodology:</strong> Contemporary teaching techniques</li>
-                        </ul>
-                        
-                        <h4>User Experience Features</h4>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><strong>Intuitive Navigation:</strong> Easy course and content discovery</li>
-                            <li class="mb-2"><strong>Progress Tracking:</strong> Visual learning progress indicators</li>
-                            <li class="mb-2"><strong>Interactive Elements:</strong> Engaging learning components</li>
-                            <li class="mb-2"><strong>Mobile Optimized:</strong> Learn anywhere, anytime</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Navigation to other projects -->
-            <section class="project-section">
-                <div class="project-navigation">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <a href="portfolio-website.html" class="project-btn secondary">
-                                <i class="fas fa-arrow-left"></i>
-                                Previous: Portfolio Website
-                            </a>
-                        </div>
-                        <div class="col-md-6 text-md-end">
-                            <a href="library-management-system.html" class="project-btn">
-                                Next: Library Management
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+        <!-- Navigation to other projects -->
+        <section class="project-section">
+          <div class="project-navigation">
+            <div class="row">
+              <div class="col-md-6">
+                <a href="portfolio-website.html" class="project-btn secondary">
+                  <i class="fas fa-arrow-left"></i>
+                  Previous: Portfolio Website
+                </a>
+              </div>
+              <div class="col-md-6 text-md-end">
+                <a href="library-management-system.html" class="project-btn">
+                  Next: Library Management
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p class="footer-text">
-                &copy; 2025 Ahmed Elsayed Abdel-Al. Crafted with passion and precision.
-            </p>
-        </div>
+      <div class="container">
+        <p class="footer-text">
+          &copy; 2025 Ahmed Elsayed Abdel-Al. Crafted with passion and
+          precision.
+        </p>
+      </div>
     </footer>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../main.js"></script>
-</body>
+  </body>
 </html>

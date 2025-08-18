@@ -49,7 +49,9 @@
               <a class="nav-link" href="../index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./index.html">All Projects</a>
+              <a class="nav-link" href="/projects/main-projects.html"
+                >All Projects</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../index.html#contact">Contact</a>
@@ -228,20 +230,73 @@
           <h2 class="section-title">Project Gallery</h2>
           <div class="project-gallery">
             <div class="project-image">
-              <i class="fas fa-comment-dots me-2"></i>
-              Chat Interface
+              <span class="gallery-img-container">
+                <!-- <iframe
+                  src="https://ahmedtyson.github.io/Personal-Assistance-ItI---Python-/"
+                  class="gallery-demo"
+                  loading="lazy"
+                  title="Personal Assistant Chat Interface"
+                  tabindex="-1"
+                  onload="try { if(this.contentDocument && this.contentDocument.body && this.contentDocument.body.innerText.includes('404')) { this.style.display='none'; this.parentNode.querySelector('.gallery-img').style.display='block'; } } catch(e) {}"
+                  onerror="this.style.display='none';this.parentNode.querySelector('.gallery-img').style.display='block';"
+                ></iframe> -->
+                <img
+                  src="images/assistant-chat.jpg"
+                  alt="Personal Assistant Chat Interface"
+                  class="gallery-img"
+                  style="display: none"
+                  onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+                />
+                <span class="gallery-fallback" style="display: none">
+                  <i class="fas fa-comment-dots me-2"></i>
+                  Chat Interface
+                </span>
+                <div class="gallery-laptop-base"></div>
+              </span>
             </div>
             <div class="project-image">
-              <i class="fas fa-sign-in-alt me-2"></i>
-              Authentication System
+              <span class="gallery-img-container">
+                <img
+                  src="images/assistant-auth.jpg"
+                  alt="Personal Assistant Authentication"
+                  class="gallery-img"
+                  onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+                />
+                <span class="gallery-fallback" style="display: none">
+                  <i class="fas fa-sign-in-alt me-2"></i>
+                  Authentication System
+                </span>
+              </span>
             </div>
             <div class="project-image">
-              <i class="fas fa-user-circle me-2"></i>
-              User Dashboard
+              <span class="gallery-img-container">
+                <img
+                  src="images/assistant-dashboard.jpg"
+                  alt="Personal Assistant Dashboard"
+                  class="gallery-img"
+                  onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+                />
+                <span class="gallery-fallback" style="display: none">
+                  <i class="fas fa-user-circle me-2"></i>
+                  User Dashboard
+                </span>
+              </span>
             </div>
             <div class="project-image">
-              <i class="fas fa-chart-line me-2"></i>
-              Analytics Dashboard
+              <span class="gallery-img-container">
+                <img
+                  src="../assets/assistant-analytics.png"
+                  alt="Personal Assistant Analytics"
+                  class="gallery-img"
+                  style="display: none"
+                  onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+                />
+                <span class="gallery-fallback" style="display: none">
+                  <i class="fas fa-chart-line me-2"></i>
+                  Analytics Dashboard
+                </span>
+                <div class="gallery-laptop-base"></div>
+              </span>
             </div>
           </div>
         </section>

@@ -16,46 +16,10 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="./project-styles.css" />
-    <style>
-      /* Add any additional styles specific to this project page here */
-      .meta-note {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 1rem;
-        border-radius: 8px;
-        margin: 1rem 0;
-        font-style: italic;
-      }
-      .list-group-flush .list-group-item {
-        border: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        padding: 1rem 0;
-        background: transparent;
-        color: inherit !important; /* Ensure no default color overrides */
-      }
-
-      /* Light mode: force black text */
-      @media (prefers-color-scheme: light) {
-        .list-group-flush .list-group-item {
-          color: #000 !important;
-        }
-        .list-group-flush .list-group-item strong {
-          color: var(--color-primary) !important;
-        }
-      }
-
-      /* Dark mode: force white text */
-      @media (prefers-color-scheme: dark) {
-        .list-group-flush .list-group-item {
-          color: #fff !important;
-        }
-        .list-group-flush .list-group-item strong {
-          color: var(--color-primary) !important;
-        }
-      }
-    </style>
+    
   </head>
 
   <body data-theme="light">
@@ -79,7 +43,9 @@
               <a class="nav-link" href="../index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./index.html">All Projects</a>
+              <a class="nav-link" href="/projects/main-projects.html"
+                >All Projects</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../index.html#contact">Contact</a>
@@ -269,20 +235,73 @@
           <h2 class="section-title">Project Gallery</h2>
           <div class="project-gallery">
             <div class="project-image">
-              <i class="fas fa-home me-2"></i>
-              Hero Section & Navigation
+              <span class="gallery-img-container">
+                <img
+                  src="images/hero-section.jpg"
+                  alt="Hero Section & Navigation"
+                  class="gallery-img"
+                  onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+                />
+                <span class="gallery-fallback" style="display: none">
+                  <i class="fas fa-home me-2"></i>
+                  Hero Section & Navigation
+                </span>
+              </span>
             </div>
             <div class="project-image">
-              <i class="fas fa-user me-2"></i>
-              About & Timeline
+              <span class="gallery-img-container">
+                <img
+                  src="images/about-section.jpg"
+                  alt="About & Timeline"
+                  class="gallery-img"
+                  onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+                />
+                <span class="gallery-fallback" style="display: none">
+                  <i class="fas fa-user me-2"></i>
+                  About & Timeline
+                </span>
+              </span>
             </div>
             <div class="project-image">
-              <i class="fas fa-code me-2"></i>
-              Skills & Technologies
+              <span class="gallery-img-container">
+                <img
+                  src="images/skills-section.jpg"
+                  alt="Skills & Technologies"
+                  class="gallery-img"
+                  onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+                />
+                <span class="gallery-fallback" style="display: none">
+                  <i class="fas fa-code me-2"></i>
+                  Skills & Technologies
+                </span>
+              </span>
             </div>
             <div class="project-image">
-              <i class="fas fa-folder-open me-2"></i>
-              Projects Showcase
+              <span
+                class="gallery-img-container"
+                onclick="window.open('../index.html', '_blank')"
+              >
+                <iframe
+                  src="https://ahmedtyson.github.io/Ahmed.Elsayed.dev/index.html"
+                  class="gallery-demo"
+                  loading="lazy"
+                  onerror="this.style.display='none';this.parentNode.querySelector('.gallery-img').style.display='block';"
+                  title="Live Demo"
+                  tabindex="-1"
+                ></iframe>
+                <img
+                  src="../assets/portf-1.png"
+                  alt="Projects Showcase"
+                  class="gallery-img"
+                  style="display: none"
+                  onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+                />
+                <span class="gallery-fallback" style="display: none">
+                  <i class="fas fa-folder-open me-2"></i>
+                  Projects Showcase
+                </span>
+                <div class="gallery-laptop-base"></div>
+              </span>
             </div>
           </div>
         </section>

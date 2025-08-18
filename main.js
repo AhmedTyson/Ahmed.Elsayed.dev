@@ -122,40 +122,42 @@ class NavigationManager {
   setupSmoothScrolling() {
     this.navLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
-        e.preventDefault();
-
         const href = link.getAttribute("href");
-        if (!href || !href.startsWith("#")) return;
+        // Only prevent default for anchor links
+        if (href && href.startsWith("#")) {
+          e.preventDefault();
 
-        const targetId = href.slice(1);
-        const targetSection = document.getElementById(targetId);
+          const targetId = href.slice(1);
+          const targetSection = document.getElementById(targetId);
 
-        if (targetSection) {
-          this.isScrolling = true;
-          this.currentActiveId = targetId;
+          if (targetSection) {
+            this.isScrolling = true;
+            this.currentActiveId = targetId;
 
-          // Update active link immediately for better UX
-          this.updateActiveLink(targetId);
+            // Update active link immediately for better UX
+            this.updateActiveLink(targetId);
 
-          // Close mobile navbar if open
-          this.closeMobileNav();
+            // Close mobile navbar if open
+            this.closeMobileNav();
 
-          // Add visual feedback during scroll
-          this.addScrollingFeedback();
+            // Add visual feedback during scroll
+            this.addScrollingFeedback();
 
-          const navHeight =
-            document.querySelector(".navbar")?.offsetHeight || 80;
-          const targetTop = targetSection.offsetTop - navHeight - 20;
+            const navHeight =
+              document.querySelector(".navbar")?.offsetHeight || 80;
+            const targetTop = targetSection.offsetTop - navHeight - 20;
 
-          // Enhanced smooth scrolling with custom animation
-          this.smoothScrollTo(Math.max(0, targetTop), 800);
+            // Enhanced smooth scrolling with custom animation
+            this.smoothScrollTo(Math.max(0, targetTop), 800);
 
-          // Reset scrolling flag after animation completes
-          setTimeout(() => {
-            this.isScrolling = false;
-            this.removeScrollingFeedback();
-          }, 1000);
+            // Reset scrolling flag after animation completes
+            setTimeout(() => {
+              this.isScrolling = false;
+              this.removeScrollingFeedback();
+            }, 1000);
+          }
         }
+        // For non-anchor links, do NOT prevent default
       });
     });
   }

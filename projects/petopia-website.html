@@ -40,7 +40,7 @@
               <a class="nav-link" href="../index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./index.html">All Projects</a>
+              <a class="nav-link" href="/projects/main-projects.html">All Projects</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../index.html#contact">Contact</a>
@@ -217,28 +217,67 @@
         </section>
 
         <!-- Gallery Section -->
-        <section id="gallery" class="project-section">
-          <h2 class="section-title">Project Gallery</h2>
-          <div class="project-gallery">
-            <div class="project-image">
-              <i class="fas fa-home me-2"></i>
-              Homepage & Hero Section
-            </div>
-            <div class="project-image">
-              <i class="fas fa-th-large me-2"></i>
-              Pet Listings Grid
-            </div>
-            <div class="project-image">
-              <i class="fas fa-id-card me-2"></i>
-              Pet Profile Page
-            </div>
-            <div class="project-image">
-              <i class="fas fa-file-alt me-2"></i>
-              Adoption Application
-            </div>
-          </div>
-        </section>
-
+<section id="gallery" class="project-section">
+  <h2 class="section-title">Project Gallery</h2>
+  <div class="project-gallery">
+    <div class="project-image">
+      <span class="gallery-img-container">
+        <img
+          src="images/petopia-home.jpg"
+          alt="PETOPIA Homepage"
+          class="gallery-img"
+          onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+        />
+        <span class="gallery-fallback" style="display: none">
+          <i class="fas fa-home me-2"></i>
+          Homepage & Hero Section
+        </span>
+      </span>
+    </div>
+    <div class="project-image">
+      <span class="gallery-img-container">
+        <img
+          src="images/petopia-listings.jpg"
+          alt="PETOPIA Pet Listings"
+          class="gallery-img"
+          onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+        />
+        <span class="gallery-fallback" style="display: none">
+          <i class="fas fa-th-large me-2"></i>
+          Pet Listings Grid
+        </span>
+      </span>
+    </div>
+    <div class="project-image">
+      <span class="gallery-img-container">
+        <img
+          src="images/petopia-profile.jpg"
+          alt="PETOPIA Pet Profile"
+          class="gallery-img"
+          onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+        />
+        <span class="gallery-fallback" style="display: none">
+          <i class="fas fa-id-card me-2"></i>
+          Pet Profile Page
+        </span>
+      </span>
+    </div>
+    <div class="project-image">
+      <span class="gallery-img-container">
+        <img
+          src="images/petopia-application.jpg"
+          alt="PETOPIA Adoption Application"
+          class="gallery-img"
+          onerror="this.style.display='none';this.parentNode.querySelector('.gallery-fallback').style.display='inline-block';"
+        />
+        <span class="gallery-fallback" style="display: none">
+          <i class="fas fa-file-alt me-2"></i>
+          Adoption Application
+        </span>
+      </span>
+    </div>
+  </div>
+</section>
         <!-- Technical Details Section -->
         <section id="technical" class="project-section">
           <h2 class="section-title">Technical Implementation</h2>
