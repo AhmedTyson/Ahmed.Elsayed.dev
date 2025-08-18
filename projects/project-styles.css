@@ -190,13 +190,17 @@
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
+  .project-hero {
+    background: linear-gradient(135deg, #141a2a, #1a2240);
+    color: #cfd8ff;
+  }
   .project-nav {
-    background: rgba(30, 30, 40, 0.98);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
+    background: rgba(20, 26, 42, 0.98);
+    border-bottom: 1px solid rgba(207, 216, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(20, 26, 42, 0.32);
   }
   .project-nav .nav-pills .nav-link {
-    color: #fff;
+    color: #cfd8ff;
     background: transparent;
   }
   .project-nav .nav-pills .nav-link.active {
@@ -207,6 +211,76 @@
   .project-nav .nav-pills .nav-link:focus:not(.active) {
     background: rgba(192, 73, 88, 0.18);
     color: var(--color-primary);
+  }
+  .project-info-card {
+    background: linear-gradient(135deg, #141a2a, #1a2240 80%);
+    color: #cfd8ff;
+    border: 1px solid rgba(192, 73, 88, 0.18);
+  }
+  .feature-card {
+    background: #1a2240;
+    color: #cfd8ff;
+    border: 1px solid rgba(192, 73, 88, 0.12);
+  }
+  .project-btn {
+    color: #fff;
+    background: linear-gradient(45deg, var(--color-primary), #1a2240);
+  }
+  .project-btn.secondary {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 4px 15px rgba(192, 73, 88, 0.18);
+  }
+  .tech-details-section {
+    background: linear-gradient(135deg, #141a2a, #1a2240 80%);
+    color: #cfd8ff;
+    border: 1px solid rgba(192, 73, 88, 0.12);
+  }
+  .project-navigation {
+    background: linear-gradient(135deg, #141a2a, #1a2240 80%);
+    color: #cfd8ff;
+    border: 1px solid rgba(192, 73, 88, 0.12);
+  }
+  .list-group-flush .list-group-item {
+    color: #cfd8ff !important;
+  }
+  .list-group-flush .list-group-item strong {
+    color: var(--color-primary) !important;
+  }
+}
+
+/* Manual theme override (highest specificity) */
+[data-theme="light"] .project-hero {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  ) !important;
+  color: white !important;
+}
+[data-theme="dark"] .project-hero {
+  background: linear-gradient(135deg, #141a2a, #1a2240) !important;
+  color: #cfd8ff !important;
+}
+
+/* Light mode: force original colors */
+@media (prefers-color-scheme: light) {
+  .project-hero {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-secondary)
+    );
+    color: white;
+  }
+}
+
+/* Dark mode: override after light mode for correct cascade */
+@media (prefers-color-scheme: dark) {
+  .project-hero {
+    background: linear-gradient(135deg, #141a2a, #1a2240);
+    color: #cfd8ff;
   }
 }
 
@@ -527,6 +601,14 @@
   color: #fff !important;
 }
 
+
+/* If you use [data-theme] for manual switching, keep these: */
+[data-theme="light"] .project-info-card li {
+  color: #000 !important;
+}
+[data-theme="dark"] .project-info-card ul li {
+  color: #dae1fe !important;
+}
 /* Project Navigation Between Pages */
 .project-navigation {
   background: linear-gradient(
@@ -602,52 +684,6 @@
     display: none !important;
   }
 }
-
-/* Example conversion: Replace viewport media query with container query on .project-nav's parent */
-
-/* Original:
-@media (max-width: 768px) {
-  .project-nav {
-    top: 56px;
-    padding: 0.5rem 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  }
-  .project-nav .nav-pills {
-    flex-direction: column;
-    gap: 0.75rem;
-    width: 100%;
-    align-items: stretch;
-    padding: 0 1rem;
-  }
-  .project-nav .nav-pills .nav-link {
-    width: 100%;
-    margin: 0;
-    padding: 1rem 1.2rem;
-    font-size: 1.1rem;
-    text-align: left;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.85);
-    color: var(--color-primary);
-    box-shadow: 0 1px 6px rgba(192, 73, 88, 0.04);
-    border: 1px solid rgba(192, 73, 88, 0.08);
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-  }
-  .project-nav .nav-pills .nav-link.active {
-    background: var(--color-primary);
-    color: #fff;
-    box-shadow: 0 4px 15px rgba(192, 73, 88, 0.18);
-    border: 1px solid var(--color-primary);
-  }
-  .project-nav .nav-pills .nav-link:hover:not(.active),
-  .project-nav .nav-pills .nav-link:focus:not(.active) {
-    background: rgba(192, 73, 88, 0.12);
-    color: var(--color-primary);
-  }
-  .project-nav.hide-on-scroll {
-    display: none !important;
-  }
-}
-*/
 
 /* Converted to container query: */
 .project-nav-parent {
@@ -811,7 +847,6 @@
   transform: translate(-50%, -50%);
   text-align: center;
   font-size: 1.1rem;
-  color: #555;
   width: 90%;
   white-space: normal;
   line-height: 1.4;
@@ -830,5 +865,65 @@
     transform: scale(0.18);
     width: 1080px;
     height: 608px;
+  }
+}
+
+/* Enhanced Meta Note Style */
+.meta-note {
+  background: linear-gradient(90deg, #f8f9fa 80%, #e9ecef 100%);
+  color: #333;
+  border-left: 4px solid var(--color-primary);
+  border-radius: 10px;
+  padding: 1rem 1.35rem;
+  margin: 1.5rem 0;
+  font-size: .9rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+@media (prefers-color-scheme: dark) {
+  .meta-note {
+    background: linear-gradient(90deg, #23243a 80%, #181824 100%);
+    color: #dae1fe !important;
+    border-left: 4px solid var(--color-primary);
+  }
+}
+
+@media (max-width: 576px) {
+  .gallery-img-container {
+    max-width: 100%;
+    aspect-ratio: 16/9;
+  }
+  .project-image {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  .gallery-demo {
+    transform: scale(0.18);
+    width: 1080px;
+    height: 608px;
+  }
+}
+
+/* Enhanced Meta Note Style */
+.meta-note {
+  background: linear-gradient(90deg, #f8f9fa 80%, #e9ecef 100%);
+  color: #333;
+  border-left: 4px solid var(--color-primary);
+  border-radius: 10px;
+  padding: 1rem 1.35rem;
+  margin: 1.5rem 0;
+  font-size: .9rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+@media (prefers-color-scheme: dark) {
+  .meta-note {
+    background: linear-gradient(90deg, #23243a 80%, #181824 100%);
+    color: #dae1fe !important;
+    border-left: 4px solid var(--color-primary);
   }
 }
