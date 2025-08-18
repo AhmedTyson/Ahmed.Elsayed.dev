@@ -17,6 +17,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   </head>
   <body data-theme="light">
     <!-- Navigation -->
@@ -155,7 +156,11 @@
                       src="./assets/Myphoto.jpg"
                       alt="Ahmed Elsayed - Profile Photo"
                       loading="lazy"
+                      onerror="this.style.display='none'; document.getElementById('profile-fallback').style.display='flex';"
                     />
+                    <div id="profile-fallback" class="profile-fallback" style="display: none;">
+                      <div class="profile-initials">AE</div>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -943,10 +943,14 @@ class ProjectPageNavigation {
 // App Initialization
 class App {
   constructor() {
+    this.loadingStartTime = Date.now();
     this.init();
   }
 
   init() {
+    // Show loading indicator
+    this.showLoadingIndicator();
+    
     if (document.readyState === "loading") {
       document.addEventListener(
         "DOMContentLoaded",
@@ -955,6 +959,75 @@ class App {
     } else {
       this.initializeComponents();
     }
+  }
+
+  showLoadingIndicator() {
+    // Add loading styles if not already present
+    if (!document.getElementById('loading-styles')) {
+      const loadingStyles = document.createElement('style');
+      loadingStyles.id = 'loading-styles';
+      loadingStyles.textContent = `
+        .page-loading {
+          opacity: 0;
+          transition: opacity 0.5s ease-in-out;
+        }
+        .page-loaded {
+          opacity: 1;
+        }
+        .loading-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: var(--bg-primary);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999;
+          transition: opacity 0.5s ease-in-out;
+        }
+        .loading-spinner {
+          width: 50px;
+          height: 50px;
+          border: 3px solid var(--border-color);
+          border-top: 3px solid var(--color-primary);
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `;
+      document.head.appendChild(loadingStyles);
+    }
+
+    // Add loading class to body
+    document.body.classList.add('page-loading');
+  }
+
+  hideLoadingIndicator() {
+    // Ensure minimum loading time for smooth experience
+    const minLoadingTime = 500;
+    const elapsedTime = Date.now() - this.loadingStartTime;
+    const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
+    
+    setTimeout(() => {
+      document.body.classList.remove('page-loading');
+      document.body.classList.add('page-loaded');
+      
+      // Remove loading overlay if it exists
+      const loadingOverlay = document.querySelector('.loading-overlay');
+      if (loadingOverlay) {
+        loadingOverlay.style.opacity = '0';
+        setTimeout(() => {
+          if (loadingOverlay.parentNode) {
+            loadingOverlay.parentNode.removeChild(loadingOverlay);
+          }
+        }, 500);
+      }
+    }, remainingTime);
   }
 
   initializeComponents() {
@@ -992,9 +1065,15 @@ class App {
 
       // Add loading animation to page elements
       this.animatePageLoad();
+      
+      // Hide loading indicator after initialization
+      this.hideLoadingIndicator();
+      
+      console.log("Portfolio initialized successfully");
     } catch (error) {
       console.error("Error initializing portfolio:", error);
       this.initializeFallbacks();
+      this.hideLoadingIndicator();
     }
   }
 
