@@ -1405,6 +1405,11 @@ body {
   background: var(--bg-secondary);
 }
 
+[data-theme="gradient"] #cv {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
 .cv-actions {
   margin-top: var(--space-md);
 }
