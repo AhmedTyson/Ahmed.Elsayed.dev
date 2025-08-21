@@ -1139,20 +1139,20 @@ class App {
   initializeFallbacks() {
     console.log("Initializing fallbacks...");
 
-    // Basic theme toggle fallback
-    if (themeToggle) {
-      themeToggle.addEventListener("click", (e) => {
-        e.preventDefault();
-        const currentTheme =
-          document.body.getAttribute("data-theme") || "light";
-        const newTheme = currentTheme === "light" ? "dark" : "light";
-        document.body.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
+    // Basic theme switcher fallback
+    if (themeSwitcher) {
+      const themeOptions = themeSwitcher.querySelectorAll(".theme-option");
+      themeOptions.forEach((option) => {
+        option.addEventListener("click", (e) => {
+          e.preventDefault();
+          const selectedTheme = option.getAttribute("data-theme");
+          document.body.setAttribute("data-theme", selectedTheme);
+          localStorage.setItem("theme", selectedTheme);
 
-        const icon = themeToggle.querySelector(".theme-icon");
-        if (icon) {
-          icon.textContent = newTheme === "light" ? "🌙" : "☀️";
-        }
+          // Update active state
+          themeOptions.forEach(opt => opt.classList.remove("active"));
+          option.classList.add("active");
+        });
       });
     }
 
