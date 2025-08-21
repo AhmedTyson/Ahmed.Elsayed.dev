@@ -42,9 +42,9 @@ class ThemeManager {
     const icon = themeToggle?.querySelector(".theme-icon");
     if (icon) {
       if (this.currentTheme === "light") {
-        icon.className = "fas fa-moon theme-icon";
+        icon.className = "fa-solid fa-moon theme-icon";
       } else {
-        icon.className = "fas fa-sun theme-icon";
+        icon.className = "fa-solid fa-sun theme-icon";
       }
     }
   }
