@@ -1189,6 +1189,15 @@ class App {
         );
       });
     }
+
+    if (downloadResumeBtn) {
+      downloadResumeBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        alert(
+          "CV download feature is being prepared. Please contact me directly at ahmed.elsayed.abdelal.2025@gmail.com for my latest CV."
+        );
+      });
+    }
   }
 }
 
