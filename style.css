@@ -977,6 +977,11 @@ body {
   background: var(--bg-secondary);
 }
 
+[data-theme="gradient"] #projects {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
 .project-card {
   background: var(--bg-card);
   border-radius: var(--radius-lg);
