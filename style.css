@@ -165,62 +165,90 @@ body {
   width: 100%;
 }
 
-.theme-toggle {
+.theme-switcher {
+  display: flex;
   background: rgba(var(--color-primary-rgb), 0.05);
   border: 2px solid var(--border-color);
-  border-radius: 50%;
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: var(--transition);
-  font-size: 1.2rem;
+  border-radius: 25px;
+  padding: 4px;
   margin-left: 1rem;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
-.theme-toggle:hover {
-  border-color: var(--color-primary);
-  background: rgba(var(--color-primary-rgb), 0.1);
-  transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(var(--color-primary-rgb), 0.3);
+.theme-option {
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  min-width: 70px;
+  justify-content: center;
+  position: relative;
 }
 
-[data-theme="dark"] .theme-toggle {
-  background: rgba(251, 191, 36, 0.1);
+.theme-option i {
+  font-size: 0.9rem;
 }
 
-[data-theme="dark"] .theme-toggle:hover {
-  border-color: #fbbf24;
-  background: rgba(251, 191, 36, 0.2);
-  box-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+.theme-option span {
+  font-size: 0.75rem;
+  display: none;
 }
 
-.theme-icon {
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.theme-icon.fa-moon {
+.theme-option:hover {
   color: var(--color-primary);
-  animation: moonPulse 4s ease-in-out infinite;
+  transform: scale(1.05);
 }
 
-.theme-icon.fa-sun {
-  color: #fbbf24;
-  animation: sunPulse 3s ease-in-out infinite;
+.theme-option.active {
+  background: var(--color-primary);
+  color: white;
+  box-shadow: 0 2px 8px rgba(var(--color-primary-rgb), 0.3);
 }
 
-.theme-toggle:hover .theme-icon.fa-moon {
-  color: var(--color-secondary);
-  transform: rotate(-15deg) scale(1.1);
+.theme-option.active:hover {
+  color: white;
+  transform: scale(1);
 }
 
-.theme-toggle:hover .theme-icon.fa-sun {
-  color: #f59e0b;
-  transform: rotate(180deg) scale(1.1);
+/* Show text on larger screens */
+@media (min-width: 768px) {
+  .theme-option {
+    min-width: 85px;
+  }
+
+  .theme-option span {
+    display: block;
+  }
+}
+
+/* Gradient theme special styling */
+[data-theme="gradient"] .theme-switcher {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+}
+
+[data-theme="gradient"] .theme-option {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="gradient"] .theme-option:hover {
+  color: var(--color-accent);
+}
+
+[data-theme="gradient"] .theme-option.active {
+  background: var(--color-accent);
+  color: var(--color-dark);
 }
 
 @keyframes moonPulse {
