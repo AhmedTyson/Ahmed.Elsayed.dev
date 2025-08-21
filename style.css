@@ -270,14 +270,19 @@ body {
   min-height: 100vh;
   display: flex;
   align-items: center;
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem 0 3rem;
+}
+
+[data-theme="light"] #hero,
+[data-theme="dark"] #hero {
   background: linear-gradient(
     135deg,
     var(--bg-primary) 0%,
     var(--bg-secondary) 100%
   );
-  position: relative;
-  overflow: hidden;
-  padding: 1.5rem 0 3rem;
 }
 
 .hero::before {
