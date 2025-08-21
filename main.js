@@ -1,5 +1,5 @@
 // DOM Elements
-const themeToggle = document.getElementById("theme-toggle");
+const themeSwitcher = document.getElementById("theme-switcher");
 const navLinks = document.querySelectorAll(".nav-link");
 const progressBar = document.getElementById("progress-bar");
 const typingText = document.getElementById("typing-text");
@@ -11,42 +11,63 @@ const backToTopButton = document.querySelector(".back-to-top");
 class ThemeManager {
   constructor() {
     this.currentTheme = localStorage.getItem("theme") || "light";
+    this.themes = ["light", "dark", "gradient"];
     this.init();
   }
 
   init() {
     this.setTheme(this.currentTheme);
-    this.updateThemeIcon();
+    this.updateActiveButton();
 
-    if (themeToggle) {
-      themeToggle.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.toggleTheme();
+    if (themeSwitcher) {
+      const themeOptions = themeSwitcher.querySelectorAll(".theme-option");
+      themeOptions.forEach((option) => {
+        option.addEventListener("click", (e) => {
+          e.preventDefault();
+          const selectedTheme = option.getAttribute("data-theme");
+          this.setTheme(selectedTheme);
+          this.updateActiveButton();
+        });
       });
     }
   }
 
   setTheme(theme) {
+    if (!this.themes.includes(theme)) {
+      theme = "light";
+    }
+
     document.body.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
     this.currentTheme = theme;
+
+    // Add smooth transition effect
+    document.body.style.transition = "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
+    setTimeout(() => {
+      document.body.style.transition = "";
+    }, 500);
   }
 
-  toggleTheme() {
-    const newTheme = this.currentTheme === "light" ? "dark" : "light";
-    this.setTheme(newTheme);
-    this.updateThemeIcon();
-  }
+  updateActiveButton() {
+    if (!themeSwitcher) return;
 
-  updateThemeIcon() {
-    const icon = themeToggle?.querySelector(".theme-icon");
-    if (icon) {
-      if (this.currentTheme === "light") {
-        icon.className = "fas fa-moon theme-icon";
+    const themeOptions = themeSwitcher.querySelectorAll(".theme-option");
+    themeOptions.forEach((option) => {
+      const theme = option.getAttribute("data-theme");
+      if (theme === this.currentTheme) {
+        option.classList.add("active");
       } else {
-        icon.className = "fas fa-sun theme-icon";
+        option.classList.remove("active");
       }
-    }
+    });
+  }
+
+  cycleTheme() {
+    const currentIndex = this.themes.indexOf(this.currentTheme);
+    const nextIndex = (currentIndex + 1) % this.themes.length;
+    const nextTheme = this.themes[nextIndex];
+    this.setTheme(nextTheme);
+    this.updateActiveButton();
   }
 }
 
@@ -1118,20 +1139,20 @@ class App {
   initializeFallbacks() {
     console.log("Initializing fallbacks...");
 
-    // Basic theme toggle fallback
-    if (themeToggle) {
-      themeToggle.addEventListener("click", (e) => {
-        e.preventDefault();
-        const currentTheme =
-          document.body.getAttribute("data-theme") || "light";
-        const newTheme = currentTheme === "light" ? "dark" : "light";
-        document.body.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
+    // Basic theme switcher fallback
+    if (themeSwitcher) {
+      const themeOptions = themeSwitcher.querySelectorAll(".theme-option");
+      themeOptions.forEach((option) => {
+        option.addEventListener("click", (e) => {
+          e.preventDefault();
+          const selectedTheme = option.getAttribute("data-theme");
+          document.body.setAttribute("data-theme", selectedTheme);
+          localStorage.setItem("theme", selectedTheme);
 
-        const icon = themeToggle.querySelector(".theme-icon");
-        if (icon) {
-          icon.textContent = newTheme === "light" ? "🌙" : "☀️";
-        }
+          // Update active state
+          themeOptions.forEach(opt => opt.classList.remove("active"));
+          option.classList.add("active");
+        });
       });
     }
 
@@ -1162,6 +1183,15 @@ class App {
     // Basic CV download fallback
     if (downloadCvBtn) {
       downloadCvBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        alert(
+          "CV download feature is being prepared. Please contact me directly at ahmed.elsayed.abdelal.2025@gmail.com for my latest CV."
+        );
+      });
+    }
+
+    if (downloadResumeBtn) {
+      downloadResumeBtn.addEventListener("click", (e) => {
         e.preventDefault();
         alert(
           "CV download feature is being prepared. Please contact me directly at ahmed.elsayed.abdelal.2025@gmail.com for my latest CV."
