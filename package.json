@@ -1,0 +1,17 @@
+{
+  "name": "ahmed-portfolio",
+  "version": "1.0.0",
+  "description": "Ahmed Elsayed Portfolio Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve -s . -l 3000",
+    "start": "npx serve -s . -l 3000",
+    "build": "echo 'Static site - no build needed'"
+  },
+  "keywords": ["portfolio", "static-site"],
+  "author": "Ahmed Elsayed",
+  "license": "MIT",
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+}
