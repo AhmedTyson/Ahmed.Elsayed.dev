@@ -62,9 +62,9 @@
 }
 
 [data-theme="gradient"] {
-  /* Dual-Tone Gradient Mode - Original color scheme with gradient */
-  --bg-primary: linear-gradient(135deg, #0b1f3b 0%, #8b5cf6 100%);
-  --bg-secondary: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+  /* Dual-Tone Gradient Mode - Deep Navy to Royal Purple */
+  --bg-primary: linear-gradient(135deg, #0a0f2c, #4b0082);
+  --bg-secondary: linear-gradient(135deg, #0a0f2c, #4b0082);
   --bg-card: rgba(255, 255, 255, 0.1);
   --text-primary: #ffffff;
   --text-secondary: #e2e8f0;
