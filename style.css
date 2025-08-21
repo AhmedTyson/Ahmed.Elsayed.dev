@@ -1287,6 +1287,11 @@ body {
   background: var(--bg-primary);
 }
 
+[data-theme="gradient"] #services {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
 .services-grid {
   display: flex;
   justify-content: center;
