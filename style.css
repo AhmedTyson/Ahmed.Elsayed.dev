@@ -48,6 +48,7 @@
   --text-secondary: #d1d5db;
   --text-muted: #9ca3af;
   --border-color: #39475e;
+<<<<<<< HEAD
   --color-primary: #3b82f6;
   --color-secondary: #a855f7;
   --color-accent: #2196f3;
@@ -57,6 +58,10 @@
   --color-primary-rgb: 59, 130, 246;
   --color-secondary-rgb: 168, 85, 247;
   --color-accent-rgb: 33, 150, 243;
+=======
+  --color-primary: #3b82f6; /* vivid blue */
+  --color-accent: #a855f7; /* bright purple */
+>>>>>>> refs/remotes/origin/main
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
@@ -66,9 +71,15 @@
   --bg-primary: linear-gradient(135deg, #0a0f2c, #4b0082);
   --bg-secondary: linear-gradient(135deg, #0a0f2c, #4b0082);
   --bg-card: rgba(255, 255, 255, 0.1);
+<<<<<<< HEAD
   --text-primary: #ffffff;
   --text-secondary: #e2e8f0;
   --text-muted: #cbd5e1;
+=======
+  --text-primary: #eaeaea;
+  --text-secondary: #bdbdbd;
+  --text-muted: #888888;
+>>>>>>> refs/remotes/origin/main
   --border-color: rgba(255, 255, 255, 0.2);
   --color-primary: #c04958;
   --color-secondary: #66003b;
@@ -124,6 +135,13 @@ body {
   background: rgba(15, 23, 42, 0.95);
 }
 
+[data-theme="gradient"] .navbar {
+  background: linear-gradient(135deg, #1e1e1e 60%, #4b0082 100%);
+  border-bottom: 1px solid var(--border-color);
+  backdrop-filter: blur(20px);
+  color: var(--text-primary);
+}
+
 .navbar-brand {
   font-family: var(--font-primary);
   font-weight: 600;
@@ -132,6 +150,10 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+[data-theme="gradient"] .navbar-brand {
+  color: var(--text-primary) !important;
 }
 
 .nav-link {
@@ -556,11 +578,11 @@ body {
   object-fit: cover;
   border-radius: 50%;
   position: absolute;
-  top: 0;
+  top: 39px;
   left: 0;
-  z-index: 1;
+  z-index: 2;
   display: block;
-  transform: scale(1.08);
+  transform: scale(1.6);
 }
 
 .profile-fallback {
@@ -569,7 +591,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
   border-radius: 50%;
   position: absolute;
   top: 0;
@@ -1424,13 +1450,7 @@ body {
   content: "✓";
   position: absolute;
   left: 0;
-  color: var(--color-primary);
-  font-weight: bold;
-}
-
-/* CV Section */
-#cv {
-  background: var(--bg-secondary);
+  backdrop-filter: blur(10px);
 }
 
 [data-theme="gradient"] #cv {
@@ -2572,7 +2592,8 @@ body {
   }
 
   /* Improve list readability */
-  ul li, ol li {
+  ul li,
+  ol li {
     font-size: clamp(0.85rem, 3.8vw, 0.95rem);
     line-height: 1.6;
     margin-bottom: 0.5rem;
@@ -2974,4 +2995,137 @@ body {
   .cert-item:hover {
     transform: none;
   }
+}
+
+/* === DEEP-PROFESSIONAL OVERRIDE =============================== */
+/* place AFTER all other theme rules                              */
+:root {
+  --color-deep: #121212; /* new master dark tone */
+  --color-deep-rgb: 18, 18, 18;
+}
+
+/* Replace the first stop of every existing gradient */
+[data-theme="gradient"] {
+  /* map old “root” colours to the new one */
+  --color-void: var(--color-deep);
+  --color-obsidian: var(--color-deep);
+
+  /* flatten large area backgrounds to a solid charcoal */
+  --bg-primary: var(--color-deep);
+  --bg-secondary: #1a1a1a; /* slightly lighter surface */
+  --bg-card: #1e1e1e;
+  --bg-card-hover: #242424;
+
+  /* keep all jewel-tone accent variables as-is so buttons, badges,
+     etc. still pop against the neutral base */
+}
+
+/* body picks up the updated colour automatically */
+
+/* === FONT COLOR OVERRIDES FOR THEMES === */
+
+/* Gradient Theme */
+[data-theme="gradient"] {
+  --text-primary: #eaeaea;
+  --text-secondary: #bdbdbd;
+  --text-muted: #888888;
+
+  .coursework-list li {
+    color: var(--text-secondary);
+  }
+}
+
+/* Ensure all text elements use the variables */
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.section-title,
+.section-subtitle,
+.hero-title,
+.hero-subtitle,
+.hero-description,
+.story-title,
+.story-text,
+.timeline-title,
+.timeline-year,
+.timeline-event,
+.timeline-description,
+.philosophy-title,
+.philosophy-heading,
+.philosophy-text,
+.impact-title,
+.stat-label,
+.stat-description,
+.focus-title,
+.focus-text,
+.focus-area span,
+.skill-title,
+.skill-name,
+.skill-percentage,
+.tech-stack .badge,
+.tech-tag,
+.highlight,
+.service-title,
+.service-description,
+.service-features,
+.cv-section-title,
+.cv-summary p,
+.education-degree,
+.education-school,
+.education-gpa,
+.coursework h5,
+.language-name,
+.language-level,
+.cert-name,
+.cert-provider,
+.cert-description,
+.contact-card-text,
+.footer-text {
+  color: var(--text-primary);
+}
+
+/* Secondary and muted text */
+.section-subtitle,
+.hero-description,
+.story-text,
+.timeline-description,
+.philosophy-text,
+.impact-title,
+.stat-description,
+.focus-text,
+.service-description,
+.service-features,
+.cv-summary p,
+.education-gpa,
+.cert-description,
+.contact-card-text,
+.footer-text {
+  color: var(--text-secondary);
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.text-decoration-none {
+  text-decoration: none !important;
+}
+
+/* Adaptive text-dark for both light and dark/gradient themes */
+.text-dark {
+  color: var(--text-primary) !important;
+}
+
+
+
+
+[data-theme="gradient"] .badge.bg-light.text-dark {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
 }
