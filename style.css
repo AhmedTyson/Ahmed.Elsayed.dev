@@ -16,8 +16,8 @@
   --bg-secondary: #ffffff;
   --bg-card: #ffffff;
   --text-primary: #1a1a1a;
-  --text-secondary: #666666;
-  --text-muted: #999999;
+  --text-secondary: #4a4a4a;
+  --text-muted: #5a5a5a;
   --border-color: #e5e5e5;
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
@@ -48,7 +48,6 @@
   --text-secondary: #d1d5db;
   --text-muted: #9ca3af;
   --border-color: #39475e;
-<<<<<<< HEAD
   --color-primary: #3b82f6;
   --color-secondary: #a855f7;
   --color-accent: #2196f3;
@@ -58,10 +57,6 @@
   --color-primary-rgb: 59, 130, 246;
   --color-secondary-rgb: 168, 85, 247;
   --color-accent-rgb: 33, 150, 243;
-=======
-  --color-primary: #3b82f6; /* vivid blue */
-  --color-accent: #a855f7; /* bright purple */
->>>>>>> refs/remotes/origin/main
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
@@ -71,15 +66,9 @@
   --bg-primary: linear-gradient(135deg, #0a0f2c, #4b0082);
   --bg-secondary: linear-gradient(135deg, #0a0f2c, #4b0082);
   --bg-card: rgba(255, 255, 255, 0.1);
-<<<<<<< HEAD
   --text-primary: #ffffff;
   --text-secondary: #e2e8f0;
   --text-muted: #cbd5e1;
-=======
-  --text-primary: #eaeaea;
-  --text-secondary: #bdbdbd;
-  --text-muted: #888888;
->>>>>>> refs/remotes/origin/main
   --border-color: rgba(255, 255, 255, 0.2);
   --color-primary: #c04958;
   --color-secondary: #66003b;
