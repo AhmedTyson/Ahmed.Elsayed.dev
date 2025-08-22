@@ -131,6 +131,60 @@ body {
   color: var(--text-primary);
 }
 
+/* WCAG 2.1 AA Accessibility Improvements */
+
+/* High contrast navigation links */
+.theme-switcher span,
+.navbar-light .nav-link {
+  color: #111 !important; /* dark on light */
+}
+
+[data-theme="dark"] .nav-link {
+  color: #f5f5f5 !important; /* light on dark */
+}
+
+[data-theme="gradient"] .nav-link {
+  color: #ffffff !important; /* white on gradient */
+}
+
+/* Accessible focus states for keyboard navigation */
+a:focus,
+button:focus,
+.nav-link:focus,
+.theme-option:focus,
+.btn:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid #0066cc !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.25) !important;
+}
+
+/* Ensure focus is visible even when hover styles are applied */
+a:focus:hover,
+button:focus:hover,
+.nav-link:focus:hover {
+  outline: 2px solid #0066cc !important;
+  outline-offset: 2px !important;
+}
+
+/* Skip to main content link for screen readers */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 9999;
+  border-radius: 4px;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
 .navbar-brand {
   font-family: var(--font-primary);
   font-weight: 600;
