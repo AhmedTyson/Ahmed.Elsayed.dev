@@ -41,6 +41,11 @@ class ThemeManager {
     localStorage.setItem("theme", theme);
     this.currentTheme = theme;
 
+    // Announce theme change for screen readers
+    if (window.keyboardNav) {
+      window.keyboardNav.announceThemeChange(theme);
+    }
+
     // Add smooth transition effect
     document.body.style.transition = "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
     setTimeout(() => {
