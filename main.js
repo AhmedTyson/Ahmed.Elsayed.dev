@@ -1149,6 +1149,9 @@ class App {
 
   initializeComponents() {
     try {
+      // Initialize accessibility components first
+      window.keyboardNav = new KeyboardNavigation();
+
       // Initialize core components
       new ThemeManager();
       new NavigationManager();
