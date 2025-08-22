@@ -1,0 +1,152 @@
+/* Accessibility Contrast Fixes - WCAG AA 4.5:1 Compliance */
+
+/* Fix low contrast text colors */
+:root {
+  --text-secondary: #555555; /* Changed from #666666 for better contrast */
+  --text-muted: #6b6b6b; /* Changed from #999999 for better contrast */
+}
+
+[data-theme="dark"] {
+  --text-secondary: #e0e0e0; /* Improved contrast for dark theme */
+  --text-muted: #b8b8b8; /* Better contrast for muted text */
+}
+
+/* Improve contrast for specific elements */
+.nav-link {
+  color: #333333 !important; /* Stronger contrast for navigation */
+}
+
+.nav-link:hover {
+  color: #c04958 !important; /* Maintain primary color on hover */
+}
+
+.hero-description {
+  color: #444444; /* Better contrast for hero description */
+}
+
+.section-subtitle {
+  color: #555555; /* Improved subtitle contrast */
+}
+
+.card-text.text-muted {
+  color: #555555 !important; /* Fix Bootstrap's muted text */
+}
+
+.timeline-description {
+  color: #444444; /* Better contrast for timeline text */
+}
+
+.service-description {
+  color: #444444; /* Improved service description contrast */
+}
+
+.service-features li {
+  color: #555555; /* Better contrast for feature lists */
+}
+
+.focus-area span {
+  color: #333333; /* Stronger contrast for focus areas */
+}
+
+/* Badge text improvements */
+.tech-stack .badge.bg-light {
+  color: #333333 !important; /* Better contrast for light badges */
+  border: 1px solid #cccccc; /* Add border for definition */
+}
+
+[data-theme="dark"] .tech-stack .badge.bg-light {
+  background-color: #2a2a2a !important;
+  color: #e0e0e0 !important;
+  border-color: #444444;
+}
+
+/* Improve button contrast */
+.btn-outline {
+  color: #333333;
+  border-color: #333333;
+}
+
+.btn-outline:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+/* Footer text contrast */
+.footer-text {
+  color: #555555;
+}
+
+/* Form and input contrast improvements */
+input, textarea, select {
+  color: #333333;
+  border-color: #cccccc;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #c04958;
+  box-shadow: 0 0 0 0.2rem rgba(192, 73, 88, 0.25);
+}
+
+/* Link contrast improvements */
+a:not(.btn):not(.nav-link):not(.social-link) {
+  color: #c04958;
+}
+
+a:not(.btn):not(.nav-link):not(.social-link):hover {
+  color: #66003b;
+}
+
+/* Accessibility improvements for interactive elements */
+.theme-option {
+  color: #444444; /* Better contrast for theme options */
+}
+
+.theme-option:hover {
+  color: #c04958;
+}
+
+.filter-btn {
+  color: #333333; /* Improved filter button contrast */
+}
+
+.filter-btn:hover {
+  color: #c04958;
+}
+
+/* Ensure sufficient contrast for all text elements */
+.counter-label {
+  color: #555555; /* Better contrast for counter labels */
+}
+
+.stat-description {
+  color: #555555; /* Improved stat description contrast */
+}
+
+.contact-card-text {
+  color: #444444; /* Better contrast for contact card text */
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --text-secondary: #000000;
+    --text-muted: #000000;
+    --border-color: #000000;
+  }
+  
+  [data-theme="dark"] {
+    --text-secondary: #ffffff;
+    --text-muted: #ffffff;
+    --border-color: #ffffff;
+  }
+  
+  .card, .service-card, .skill-category {
+    border: 2px solid #000000;
+  }
+  
+  [data-theme="dark"] .card,
+  [data-theme="dark"] .service-card,
+  [data-theme="dark"] .skill-category {
+    border: 2px solid #ffffff;
+  }
+}
