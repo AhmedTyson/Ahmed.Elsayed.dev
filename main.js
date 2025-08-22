@@ -983,6 +983,75 @@ class ProjectPageNavigation {
   }
 }
 
+// Keyboard Navigation Handler
+class KeyboardNavigation {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    // Handle escape key for accessibility
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        // Close any open modals or menus
+        this.closeAllModals();
+        // Remove focus from active element if it's not essential
+        if (document.activeElement &&
+            !document.activeElement.matches('input, textarea, select, [contenteditable]')) {
+          document.activeElement.blur();
+        }
+      }
+    });
+
+    // Improve skip link functionality
+    const skipLink = document.querySelector('.skip-link');
+    if (skipLink) {
+      skipLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector('#main-content');
+        if (target) {
+          target.setAttribute('tabindex', '-1');
+          target.focus();
+          target.scrollIntoView({ behavior: 'smooth' });
+          // Remove tabindex after focus to prevent confusion
+          setTimeout(() => target.removeAttribute('tabindex'), 100);
+        }
+      });
+    }
+
+    // Announce theme changes to screen readers
+    this.setupThemeAnnouncements();
+  }
+
+  setupThemeAnnouncements() {
+    // Create a live region for announcements
+    const announcer = document.createElement('div');
+    announcer.setAttribute('aria-live', 'polite');
+    announcer.setAttribute('aria-atomic', 'true');
+    announcer.style.cssText = 'position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden;';
+    announcer.id = 'theme-announcer';
+    document.body.appendChild(announcer);
+  }
+
+  announceThemeChange(theme) {
+    const announcer = document.getElementById('theme-announcer');
+    if (announcer) {
+      announcer.textContent = `Theme changed to ${theme} mode`;
+    }
+  }
+
+  closeAllModals() {
+    // Close any open modals, dropdowns, or collapsible content
+    const openCollapses = document.querySelectorAll('.collapse.show');
+    openCollapses.forEach(collapse => {
+      if (window.bootstrap && window.bootstrap.Collapse) {
+        const bsCollapse = window.bootstrap.Collapse.getInstance(collapse);
+        if (bsCollapse) bsCollapse.hide();
+      }
+    });
+  }
+}
+
 // App Initialization
 class App {
   constructor() {
