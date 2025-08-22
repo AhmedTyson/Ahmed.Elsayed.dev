@@ -20,11 +20,14 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   </head>
   <body data-theme="light">
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light" role="navigation" aria-label="Main navigation">
       <div class="container">
-        <a class="navbar-brand" href="#">
-          <i class="fa-solid fa-code"></i>Ahmed Elsayed
+        <a class="navbar-brand" href="#" aria-label="Ahmed Elsayed - Portfolio home">
+          <i class="fa-solid fa-code" aria-hidden="true"></i>Ahmed Elsayed
         </a>
         <button
           class="navbar-toggler"
@@ -59,22 +62,23 @@
             </li>
           </ul>
           <div class="theme-switcher" id="theme-switcher">
-            <button class="theme-option active" data-theme="light" aria-label="Light theme">
-              <i class="fa-solid fa-sun"></i>
+            <button class="theme-option active" data-theme="light" aria-label="Switch to light theme">
+              <i class="fa-solid fa-sun" aria-hidden="true"></i>
               <span>Light</span>
             </button>
-            <button class="theme-option" data-theme="dark" aria-label="Dark theme">
-              <i class="fa-solid fa-moon"></i>
+            <button class="theme-option" data-theme="dark" aria-label="Switch to dark theme">
+              <i class="fa-solid fa-moon" aria-hidden="true"></i>
               <span>Dark</span>
             </button>
-            <button class="theme-option" data-theme="gradient" aria-label="Gradient theme">
-              <i class="fa-solid fa-palette"></i>
+            <button class="theme-option" data-theme="gradient" aria-label="Switch to gradient theme">
+              <i class="fa-solid fa-palette" aria-hidden="true"></i>
               <span>Gradient</span>
             </button>
           </div>
         </div>
       </div>
-    </nav>
+      </nav>
+    </header>
 
     <!-- Progress Indicator -->
     <div class="progress-indicator">
@@ -82,9 +86,9 @@
     </div>
 
     <!-- Main Content -->
-    <main class="main">
+    <main class="main" id="main-content" role="main">
       <!-- Hero Section -->
-      <section id="hero" class="hero">
+      <section id="hero" class="hero" aria-label="Introduction and overview">
         <div class="container">
           <div class="hero-content">
             <div class="hero-left">
@@ -106,28 +110,33 @@
                   <div class="counter-item">
                     <div class="counter-number" data-target="15">0</div>
                     <div class="counter-label">Projects</div>
+                    <span class="visually-hidden">completed across web development, AI, and enterprise applications</span>
                   </div>
                   <div class="counter-item">
                     <div class="counter-number" data-target="6">0</div>
                     <div class="counter-label">Certifications</div>
+                    <span class="visually-hidden">earned in .NET development, Python programming, and professional skills</span>
                   </div>
                   <div class="counter-item">
                     <div class="counter-number" data-target="3">0</div>
                     <div class="counter-label">Years Learning</div>
+                    <span class="visually-hidden">of continuous software development education and skill building</span>
                   </div>
                   <div class="counter-item">
                     <div class="counter-number" data-target="100">0</div>
                     <div class="counter-label">% Dedication</div>
+                    <span class="visually-hidden">to delivering high-quality software solutions and continuous improvement</span>
                   </div>
                 </div>
 
                 <div class="hero-actions">
-                  <a href="#projects" class="btn btn-primary">View My Work</a>
+                  <a href="#projects" class="btn btn-primary" aria-label="View Ahmed Elsayed's featured projects">View My Work</a>
                   <a
                     href="./assets/Ahmed_Elsayed_NET_Developer_CV.pdf"
                     class="btn btn-outline"
                     id="download-resume"
                     download
+                    aria-label="Download Ahmed Elsayed's resume as PDF"
                     >Download Resume</a
                   >
                 </div>
@@ -138,17 +147,17 @@
                     href="https://linkedin.com/in/ahmed-elsayed-8b9bba28a"
                     target="_blank"
                     class="social-link"
-                    aria-label="LinkedIn Profile"
+                    aria-label="Ahmed Elsayed's LinkedIn Profile (opens in new window)"
                   >
-                    <i class="fa-brands fa-linkedin"></i>
+                    <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
                   </a>
                   <a
                     href="https://github.com/AhmedTyson"
                     target="_blank"
                     class="social-link"
-                    aria-label="GitHub Profile"
+                    aria-label="Ahmed Elsayed's GitHub Profile (opens in new window)"
                   >
-                    <i class="fa-brands fa-github"></i>
+                    <i class="fa-brands fa-github" aria-hidden="true"></i>
                   </a>
                 </div>
               </div>
@@ -165,6 +174,7 @@
                       loading="lazy"
                       onerror="this.style.display='none'; document.getElementById('profile-fallback').style.display='flex';"
                     />
+                    <span class="visually-hidden">Ahmed Elsayed – Aspiring .NET Full Stack Developer and Python Developer specializing in enterprise applications and AI integration</span>
                     <div id="profile-fallback" class="profile-fallback" style="display: none;">
                       <div class="profile-initials">AE</div>
                     </div>
@@ -177,7 +187,7 @@
       </section>
 
       <!-- About Section -->
-      <section id="about" class="about section">
+      <section id="about" class="about section" aria-label="About Ahmed Elsayed">
         <div class="container">
           <div class="section-header">
             <h2 class="section-title">About Me</h2>
@@ -327,7 +337,7 @@
       </section>
 
       <!-- CV Section -->
-      <section id="cv" class="cv section">
+      <section id="cv" class="cv section" aria-label="Curriculum Vitae and qualifications">
         <div class="container">
           <div class="section-header">
             <h2 class="section-title">Curriculum Vitae</h2>
@@ -335,7 +345,7 @@
               Comprehensive overview of my professional journey
             </p>
             <div class="cv-actions">
-              <button class="btn btn-primary" id="download-cv">
+              <button class="btn btn-primary" id="download-cv" aria-label="Download Ahmed Elsayed's curriculum vitae as PDF">
                 Download CV
               </button>
             </div>
@@ -387,9 +397,9 @@
                     <div class="accordion-body">
                       <div class="education-item">
                         <div class="education-header">
-                          <h4 class="education-degree">
+                          <h3 class="education-degree">
                             Bachelor of Business Information Systems
-                          </h4>
+                          </h3>
                           <span class="education-year"
                             >2023 – 2027 (Expected)</span
                           >
@@ -533,7 +543,7 @@
       </section>
 
       <!-- Skills Section -->
-      <section id="skills" class="skills section">
+      <section id="skills" class="skills section" aria-label="Technical skills and expertise">
         <div class="container">
           <div class="section-header">
             <h2 class="section-title">Technical Arsenal</h2>
@@ -552,6 +562,7 @@
                     <div class="skill-progress-bar">
                       <div class="skill-progress-fill" data-width="90"></div>
                     </div>
+                    <span class="visually-hidden">Advanced proficiency in Python programming including web frameworks like Flask and Django, data structures, and object-oriented programming</span>
                   </div>
                   <div class="skill-progress-item">
                     <div class="skill-info">
@@ -561,6 +572,7 @@
                     <div class="skill-progress-bar">
                       <div class="skill-progress-fill" data-width="85"></div>
                     </div>
+                    <span class="visually-hidden">Proficient in C# programming and .NET framework development including ASP.NET Core, Entity Framework, and SOLID principles</span>
                   </div>
                   <div class="skill-progress-item">
                     <div class="skill-info">
@@ -570,6 +582,7 @@
                     <div class="skill-progress-bar">
                       <div class="skill-progress-fill" data-width="88"></div>
                     </div>
+                    <span class="visually-hidden">Strong database skills including query optimization, database design, and working with PostgreSQL and SQL Server</span>
                   </div>
                   <div class="skill-progress-item">
                     <div class="skill-info">
@@ -579,6 +592,7 @@
                     <div class="skill-progress-bar">
                       <div class="skill-progress-fill" data-width="80"></div>
                     </div>
+                    <span class="visually-hidden">Competent in modern JavaScript including ES6+ features, DOM manipulation, and asynchronous programming</span>
                   </div>
                 </div>
               </div>
@@ -593,6 +607,7 @@
                     <div class="skill-progress-bar">
                       <div class="skill-progress-fill" data-width="85"></div>
                     </div>
+                    <span class="visually-hidden">Proficient in .NET ecosystem including ASP.NET Core, Entity Framework, and building enterprise applications</span>
                   </div>
                   <div class="skill-progress-item">
                     <div class="skill-info">
@@ -602,6 +617,7 @@
                     <div class="skill-progress-bar">
                       <div class="skill-progress-fill" data-width="82"></div>
                     </div>
+                    <span class="visually-hidden">Experienced with Python web frameworks including Flask for lightweight applications and Django for full-scale web development</span>
                   </div>
                   <div class="skill-progress-item">
                     <div class="skill-info">
@@ -611,6 +627,7 @@
                     <div class="skill-progress-bar">
                       <div class="skill-progress-fill" data-width="90"></div>
                     </div>
+                    <span class="visually-hidden">Advanced skills in Bootstrap framework for responsive design, grid systems, and component development</span>
                   </div>
                   <div class="skill-progress-item">
                     <div class="skill-info">
@@ -620,6 +637,7 @@
                     <div class="skill-progress-bar">
                       <div class="skill-progress-fill" data-width="88"></div>
                     </div>
+                    <span class="visually-hidden">Strong version control skills including branching strategies, collaborative workflows, and repository management</span>
                   </div>
                 </div>
               </div>
@@ -629,7 +647,7 @@
       </section>
 
       <!-- Projects Section -->
-      <section id="projects" class="projects section">
+      <section id="projects" class="projects section" aria-label="Featured projects and portfolio">
         <div class="container">
           <div class="section-header">
             <h2 class="section-title">Featured Projects</h2>
@@ -637,11 +655,11 @@
           </div>
 
           <!-- Portfolio Filter Buttons -->
-          <div class="portfolio-filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="web">Web</button>
-            <button class="filter-btn" data-filter="ai">AI</button>
-            <button class="filter-btn" data-filter="python">Python</button>
+          <div class="portfolio-filters" role="group" aria-label="Filter projects by category">
+            <button class="filter-btn active" data-filter="all" aria-label="Show all projects">All</button>
+            <button class="filter-btn" data-filter="web" aria-label="Show web development projects">Web</button>
+            <button class="filter-btn" data-filter="ai" aria-label="Show AI and machine learning projects">AI</button>
+            <button class="filter-btn" data-filter="python" aria-label="Show Python programming projects">Python</button>
           </div>
 
           <div class="row g-4">
@@ -649,9 +667,10 @@
             <div class="col-lg-6 col-xl-4" data-category="python">
               <div class="card project-card h-100 border-0 shadow-sm">
                 <div class="project-image-container">
-                  <img src="https://images.unsplash.com/photo-1741699428220-65f37f3fbbcb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop&crop=center"
                        class="card-img-top project-image img-fluid"
                        alt="Sierra ILS Library Management System - Modern library with organized book shelves">
+                  <span class="visually-hidden">Object-oriented programming project demonstrating SOLID principles and .NET design patterns in Python</span>
                   <div class="project-overlay">
                     <div class="project-overlay-content">
                       <h5 class="text-white fw-bold mb-2">Sierra ILS Library Management</h5>
@@ -670,11 +689,11 @@
                 </div>
                 <div class="card-body d-flex flex-column">
                   <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h5 class="card-title mb-0">
+                    <h3 class="card-title mb-0">
                       <a href="projects/library-management-system.html" class="text-decoration-none text-dark">
                         Sierra ILS Library Management System
                       </a>
-                    </h5>
+                    </h3>
                     <span class="badge bg-primary">May 2025</span>
                   </div>
                   <p class="card-text text-muted flex-grow-1">
@@ -687,7 +706,14 @@
                     <span class="badge bg-light text-dark me-1 mb-1">SOLID</span>
                   </div>
                   <div class="project-actions">
-                    
+                    <a href="projects/library-management-system.html" class="btn btn-outline-primary btn-sm me-2">
+                      <i class="fa-solid fa-eye me-1"></i>View Details
+                    </a>
+                    <a href="https://github.com/AhmedTyson/college-project-assignment-1/tree/main/Library%20Management%20System"
+                       target="_blank" class="btn btn-outline-secondary btn-sm">
+                      <i class="fa-brands fa-github me-1"></i>GitHub
+                    </a>
+
                   </div>
                 </div>
               </div>
@@ -700,6 +726,7 @@
                   <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=250&fit=crop&crop=center"
                        class="card-img-top project-image img-fluid"
                        alt="Pet Adoption Website (PETOPIA) - Happy pets waiting for adoption">
+                  <span class="visually-hidden">Responsive web application built with HTML5, CSS3, and JavaScript featuring mobile-first design</span>
                   <div class="project-overlay">
                     <div class="project-overlay-content">
                       <h5 class="text-white fw-bold mb-2">PETOPIA</h5>
@@ -718,11 +745,11 @@
                 </div>
                 <div class="card-body d-flex flex-column">
                   <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h5 class="card-title mb-0">
+                    <h3 class="card-title mb-0">
                       <a href="projects/petopia-website.html" class="text-decoration-none text-dark">
                         Pet Adoption Website (PETOPIA)
                       </a>
-                    </h5>
+                    </h3>
                     <span class="badge bg-primary">March 2025</span>
                   </div>
                   <p class="card-text text-muted flex-grow-1">
@@ -735,6 +762,13 @@
                     <span class="badge bg-light text-dark me-1 mb-1">Responsive</span>
                   </div>
                   <div class="project-actions">
+                    <a href="projects/petopia-website.html" class="btn btn-outline-primary btn-sm me-2">
+                      <i class="fa-solid fa-eye me-1"></i>View Details
+                    </a>
+                    <a href="https://github.com/AhmedTyson/PETOBIA-student-activity-team-project"
+                       target="_blank" class="btn btn-outline-secondary btn-sm">
+                      <i class="fa-brands fa-github me-1"></i>GitHub
+                    </a>
                   </div>
                 </div>
               </div>
@@ -747,6 +781,7 @@
                   <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop&crop=center"
                        class="card-img-top project-image img-fluid"
                        alt="Personal Assistant Web App - AI and machine learning interface">
+                  <span class="visually-hidden">Flask-based web application with GPT-3 integration, PostgreSQL database, and real-time chat functionality</span>
                   <div class="project-overlay">
                     <div class="project-overlay-content">
                       <h5 class="text-white fw-bold mb-2">AI Personal Assistant</h5>
@@ -765,11 +800,11 @@
                 </div>
                 <div class="card-body d-flex flex-column">
                   <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h5 class="card-title mb-0">
+                    <h3 class="card-title mb-0">
                       <a href="projects/personal-assistant.html" class="text-decoration-none text-dark">
                         Personal Assistant Web App
                       </a>
-                    </h5>
+                    </h3>
                     <span class="badge bg-primary">Sep 2024</span>
                   </div>
                   <p class="card-text text-muted flex-grow-1">
@@ -782,7 +817,13 @@
                     <span class="badge bg-light text-dark me-1 mb-1">GPT-3</span>
                   </div>
                   <div class="project-actions">
-                    
+                    <a href="projects/personal-assistant.html" class="btn btn-outline-primary btn-sm me-2">
+                      <i class="fa-solid fa-eye me-1"></i>View Details
+                    </a>
+                    <a href="https://github.com/AhmedTyson/Personal-Assistance-ItI---Python-"
+                       target="_blank" class="btn btn-outline-secondary btn-sm">
+                      <i class="fa-brands fa-github me-1"></i>GitHub
+                    </a>
                   </div>
                 </div>
               </div>
@@ -795,6 +836,7 @@
                   <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop&crop=center"
                        class="card-img-top project-image img-fluid"
                        alt="JavaNova - Java Learning Academy - Modern coding education platform">
+                  <span class="visually-hidden">Interactive educational platform featuring modern gradient design and comprehensive Java programming curriculum</span>
                   <div class="project-overlay">
                     <div class="project-overlay-content">
                       <h5 class="text-white fw-bold mb-2">JavaNova Academy</h5>
@@ -814,11 +856,11 @@
                 </div>
                 <div class="card-body d-flex flex-column">
                   <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h5 class="card-title mb-0">
+                    <h3 class="card-title mb-0">
                       <a href="projects/javanova.html" class="text-decoration-none text-dark">
                         JavaNova - Java Learning Academy
                       </a>
-                    </h5>
+                    </h3>
                     <span class="badge bg-primary">Dec 2024</span>
                   </div>
                   <p class="card-text text-muted flex-grow-1">
@@ -831,6 +873,14 @@
                     <span class="badge bg-light text-dark me-1 mb-1">Education</span>
                   </div>
                   <div class="project-actions">
+                    <a href="https://ahmedtyson.github.io/JavaNova-project/javanova.html"
+                       target="_blank" class="btn btn-outline-success btn-sm me-2">
+                      <i class="fa-solid fa-external-link me-1"></i>Live Demo
+                    </a>
+                    <a href="https://github.com/AhmedTyson/JavaNova-project"
+                       target="_blank" class="btn btn-outline-secondary btn-sm">
+                      <i class="fa-brands fa-github me-1"></i>GitHub
+                    </a>
                     
                   </div>
                 </div>
@@ -844,6 +894,7 @@
                   <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=250&fit=crop&crop=center"
                        class="card-img-top project-image img-fluid"
                        alt="Portfolio Website - Modern web development workspace">
+                  <span class="visually-hidden">Personal portfolio website showcasing responsive design principles and modern web development techniques</span>
                   <div class="project-overlay">
                     <div class="project-overlay-content">
                       <h5 class="text-white fw-bold mb-2">Portfolio Website</h5>
@@ -862,11 +913,11 @@
                 </div>
                 <div class="card-body d-flex flex-column">
                   <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h5 class="card-title mb-0">
+                    <h3 class="card-title mb-0">
                       <a href="projects/portfolio-website.html" class="text-decoration-none text-dark">
                         Portfolio Website
                       </a>
-                    </h5>
+                    </h3>
                     <span class="badge bg-primary">Aug 2024</span>
                   </div>
                   <p class="card-text text-muted flex-grow-1">
@@ -879,7 +930,13 @@
                     <span class="badge bg-light text-dark me-1 mb-1">Responsive</span>
                   </div>
                   <div class="project-actions">
-                    
+                    <a href="projects/portfolio-website.html" class="btn btn-outline-primary btn-sm me-2">
+                      <i class="fa-solid fa-eye me-1"></i>View Details
+                    </a>
+                    <a href="https://github.com/AhmedTyson"
+                       target="_blank" class="btn btn-outline-secondary btn-sm">
+                      <i class="fa-brands fa-github me-1"></i>GitHub
+                    </a>                    
                   </div>
                 </div>
               </div>
@@ -892,6 +949,7 @@
                   <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&h=250&fit=crop&crop=center"
                        class="card-img-top project-image img-fluid"
                        alt="Car Loan Calculator - Financial planning and automotive tools">
+                  <span class="visually-hidden">Interactive financial calculation tool featuring real-time computations and user-friendly interface design</span>
                   <div class="project-overlay">
                     <div class="project-overlay-content">
                       <h5 class="text-white fw-bold mb-2">Car Loan Calculator</h5>
@@ -910,11 +968,11 @@
                 </div>
                 <div class="card-body d-flex flex-column">
                   <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h5 class="card-title mb-0">
+                    <h3 class="card-title mb-0">
                       <a href="projects/car-loan-calculator.html" class="text-decoration-none text-dark">
                         Car Loan Calculator
                       </a>
-                    </h5>
+                    </h3>
                     <span class="badge bg-primary">Jul 2024</span>
                   </div>
                   <p class="card-text text-muted flex-grow-1">
@@ -927,7 +985,13 @@
                     <span class="badge bg-light text-dark me-1 mb-1">Finance</span>
                   </div>
                   <div class="project-actions">
-                    
+                    <a href="projects/car-loan-calculator.html" class="btn btn-outline-primary btn-sm me-2">
+                      <i class="fa-solid fa-eye me-1"></i>View Details
+                    </a>
+                    <a href="https://github.com/AhmedTyson"
+                       target="_blank" class="btn btn-outline-secondary btn-sm">
+                      <i class="fa-brands fa-github me-1"></i>GitHub
+                    </a>                    
                   </div>
                 </div>
               </div>
@@ -937,7 +1001,7 @@
       </section>
 
       <!-- Services Section -->
-      <section id="services" class="services section">
+      <section id="services" class="services section" aria-label="Professional services offered">
         <div class="container">
           <div class="section-header">
             <h2 class="section-title">Services</h2>
@@ -949,6 +1013,7 @@
                 <i class="fa-solid fa-code"></i>
               </div>
               <h3 class="service-title">Full Stack Development</h3>
+              <span class="visually-hidden">Comprehensive web development service covering both frontend and backend technologies</span>
               <p class="service-description">
                 End-to-end web application development using modern technologies
                 like .NET, Python, and JavaScript frameworks.
@@ -964,6 +1029,7 @@
                 <i class="fa-solid fa-database"></i>
               </div>
               <h3 class="service-title">Database Design</h3>
+              <span class="visually-hidden">Professional database architecture and optimization services for scalable applications</span>
               <p class="service-description">
                 Efficient database architecture and optimization for scalable
                 applications with PostgreSQL and SQL Server.
@@ -979,6 +1045,7 @@
                 <i class="fa-solid fa-robot"></i>
               </div>
               <h3 class="service-title">AI Integration</h3>
+              <span class="visually-hidden">Artificial intelligence and machine learning integration to enhance user experience and automate processes</span>
               <p class="service-description">
                 Intelligent solutions using AI and machine learning to enhance
                 user experience and automate processes.
@@ -994,6 +1061,7 @@
                 <i class="fa-solid fa-mobile-screen"></i>
               </div>
               <h3 class="service-title">Mobile-First Design</h3>
+              <span class="visually-hidden">Responsive web design ensuring optimal user experience across all devices and screen sizes</span>
               <p class="service-description">
                 Responsive and user-friendly interfaces that work seamlessly
                 across all devices and screen sizes.
@@ -1009,7 +1077,7 @@
       </section>
 
       <!-- Contact Section -->
-      <section id="contact" class="contact section">
+      <section id="contact" class="contact section" aria-label="Contact information and ways to connect">
         <div class="container">
           <div class="section-header">
             <h2 class="section-title">Get In Touch</h2>
@@ -1027,8 +1095,9 @@
               <a
                 href="mailto:ahmed.elsayed.abdelal.2025@gmail.com"
                 class="contact-cta"
+                aria-label="Send email to Ahmed Elsayed to start a conversation"
               >
-                <i class="fa-solid fa-paper-plane"></i>
+                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
                 Let's Start a Conversation
               </a>
             </div>
@@ -1037,9 +1106,10 @@
               <a
                 href="mailto:ahmed.elsayed.abdelal.2025@gmail.com"
                 class="contact-card"
+                aria-label="Send email to ahmed.elsayed.abdelal.2025@gmail.com"
               >
                 <div class="contact-card-icon">
-                  <i class="fa-solid fa-envelope"></i>
+                  <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                 </div>
                 <h3 class="contact-card-title">Email</h3>
                 <p class="contact-card-text">
@@ -1051,9 +1121,10 @@
                 href="https://github.com/AhmedTyson"
                 target="_blank"
                 class="contact-card"
+                aria-label="View Ahmed Elsayed's GitHub repositories (opens in new window)"
               >
                 <div class="contact-card-icon">
-                  <i class="fa-brands fa-github"></i>
+                  <i class="fa-brands fa-github" aria-hidden="true"></i>
                 </div>
                 <h3 class="contact-card-title">GitHub</h3>
                 <p class="contact-card-text">View my repositories</p>
@@ -1063,17 +1134,18 @@
                 href="https://linkedin.com/in/ahmed-elsayed-8b9bba28a"
                 target="_blank"
                 class="contact-card"
+                aria-label="Connect with Ahmed Elsayed on LinkedIn (opens in new window)"
               >
                 <div class="contact-card-icon">
-                  <i class="fa-brands fa-linkedin"></i>
+                  <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
                 </div>
                 <h3 class="contact-card-title">LinkedIn</h3>
                 <p class="contact-card-text">Professional network</p>
               </a>
 
-              <div class="contact-card location-card">
+              <div class="contact-card location-card" role="text">
                 <div class="contact-card-icon">
-                  <i class="fa-solid fa-location-dot"></i>
+                  <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
                 </div>
                 <h3 class="contact-card-title">Location</h3>
                 <p class="contact-card-text">Qalyubia, Egypt</p>
@@ -1085,7 +1157,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
       <div class="container">
         <p class="footer-text">
           &copy; 2025 Ahmed Elsayed Abdel-Al. Crafted with passion and
@@ -1095,8 +1167,8 @@
     </footer>
 
     <!-- Back to top button -->
-    <a href="#" class="back-to-top">
-      <i class="fa-solid fa-arrow-up"></i>
+    <a href="#" class="back-to-top" aria-label="Back to top of page">
+      <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
     </a>
 
     <!-- Bootstrap Bundle with Popper -->
