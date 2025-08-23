@@ -17,18 +17,16 @@ class ThemeManager {
 
   init() {
     this.setTheme(this.currentTheme);
-    this.updateActiveButton();
+    this.updateToggleIcon();
 
     if (themeSwitcher) {
-      const themeOptions = themeSwitcher.querySelectorAll(".theme-option");
-      themeOptions.forEach((option) => {
-        option.addEventListener("click", (e) => {
+      const themeToggle = themeSwitcher.querySelector(".theme-toggle");
+      if (themeToggle) {
+        themeToggle.addEventListener("click", (e) => {
           e.preventDefault();
-          const selectedTheme = option.getAttribute("data-theme");
-          this.setTheme(selectedTheme);
-          this.updateActiveButton();
+          this.cycleTheme();
         });
-      });
+      }
     }
   }
 
@@ -48,18 +46,25 @@ class ThemeManager {
     }, 500);
   }
 
-  updateActiveButton() {
+  updateToggleIcon() {
     if (!themeSwitcher) return;
 
-    const themeOptions = themeSwitcher.querySelectorAll(".theme-option");
-    themeOptions.forEach((option) => {
-      const theme = option.getAttribute("data-theme");
-      if (theme === this.currentTheme) {
-        option.classList.add("active");
-      } else {
-        option.classList.remove("active");
-      }
-    });
+    const themeIcon = themeSwitcher.querySelector(".theme-icon");
+    if (!themeIcon) return;
+
+    // Update icon based on current theme
+    themeIcon.className = "theme-icon";
+    switch (this.currentTheme) {
+      case "light":
+        themeIcon.classList.add("fa-solid", "fa-sun");
+        break;
+      case "dark":
+        themeIcon.classList.add("fa-solid", "fa-moon");
+        break;
+      case "gradient":
+        themeIcon.classList.add("fa-solid", "fa-palette");
+        break;
+    }
   }
 
   cycleTheme() {
@@ -67,7 +72,7 @@ class ThemeManager {
     const nextIndex = (currentIndex + 1) % this.themes.length;
     const nextTheme = this.themes[nextIndex];
     this.setTheme(nextTheme);
-    this.updateActiveButton();
+    this.updateToggleIcon();
   }
 }
 
@@ -1149,19 +1154,38 @@ class App {
 
     // Basic theme switcher fallback
     if (themeSwitcher) {
-      const themeOptions = themeSwitcher.querySelectorAll(".theme-option");
-      themeOptions.forEach((option) => {
-        option.addEventListener("click", (e) => {
-          e.preventDefault();
-          const selectedTheme = option.getAttribute("data-theme");
-          document.body.setAttribute("data-theme", selectedTheme);
-          localStorage.setItem("theme", selectedTheme);
+      const themeToggle = themeSwitcher.querySelector(".theme-toggle");
+      if (themeToggle) {
+        const themes = ["light", "dark", "gradient"];
+        let currentTheme = localStorage.getItem("theme") || "light";
 
-          // Update active state
-          themeOptions.forEach((opt) => opt.classList.remove("active"));
-          option.classList.add("active");
+        themeToggle.addEventListener("click", (e) => {
+          e.preventDefault();
+          const currentIndex = themes.indexOf(currentTheme);
+          const nextIndex = (currentIndex + 1) % themes.length;
+          currentTheme = themes[nextIndex];
+
+          document.body.setAttribute("data-theme", currentTheme);
+          localStorage.setItem("theme", currentTheme);
+
+          // Update icon
+          const themeIcon = themeToggle.querySelector(".theme-icon");
+          if (themeIcon) {
+            themeIcon.className = "theme-icon";
+            switch (currentTheme) {
+              case "light":
+                themeIcon.classList.add("fa-solid", "fa-sun");
+                break;
+              case "dark":
+                themeIcon.classList.add("fa-solid", "fa-moon");
+                break;
+              case "gradient":
+                themeIcon.classList.add("fa-solid", "fa-palette");
+                break;
+            }
+          }
         });
-      });
+      }
     }
 
     // Basic smooth scrolling fallback
