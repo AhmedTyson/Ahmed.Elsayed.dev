@@ -41,11 +41,6 @@ class ThemeManager {
     localStorage.setItem("theme", theme);
     this.currentTheme = theme;
 
-    // Announce theme change for screen readers
-    if (window.keyboardNav) {
-      window.keyboardNav.announceThemeChange(theme);
-    }
-
     // Add smooth transition effect
     document.body.style.transition = "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
     setTimeout(() => {
@@ -667,13 +662,18 @@ class CounterAnimation {
 // Portfolio Filter
 class PortfolioFilter {
   constructor() {
-    this.filterButtons = document.querySelectorAll(".filter-btn");
-    this.projectCards = document.querySelectorAll(".project-card");
+    this.filterButtons = document.querySelectorAll(
+      ".portfolio-filters .filter-btn"
+    );
+    // Select the grid items, not just the cards
+    this.projectGridItems = document.querySelectorAll(
+      "#projects .row > div[data-category]"
+    );
     this.init();
   }
 
   init() {
-    if (!this.filterButtons.length || !this.projectCards.length) return;
+    if (!this.filterButtons.length || !this.projectGridItems.length) return;
 
     this.filterButtons.forEach((button) => {
       button.addEventListener("click", (e) => {
@@ -685,24 +685,27 @@ class PortfolioFilter {
   }
 
   filterProjects(filter) {
-    this.projectCards.forEach((card, index) => {
-      const category = card.getAttribute("data-category");
+    this.projectGridItems.forEach((item, index) => {
+      const category = item.getAttribute("data-category");
       const shouldShow = filter === "all" || category === filter;
 
       if (shouldShow) {
         setTimeout(() => {
-          card.style.display = "block";
-          card.classList.remove("fade-out");
-          card.classList.add("fade-in");
+          item.style.display = "block";
+          item.classList.remove("fade-out");
+          item.classList.add("fade-in");
         }, index * 100);
       } else {
-        card.classList.remove("fade-in");
-        card.classList.add("fade-out");
+        item.classList.remove("fade-in");
+        item.classList.add("fade-out");
         setTimeout(() => {
-          if (card.classList.contains("fade-out")) card.style.display = "none";
+          if (item.classList.contains("fade-out")) item.style.display = "none";
         }, 400);
       }
     });
+
+    // Always show all filter buttons, keep them clickable
+    this.filterButtons.forEach((btn) => (btn.style.display = "inline-block"));
   }
 
   updateActiveButton(activeButton) {
@@ -988,75 +991,6 @@ class ProjectPageNavigation {
   }
 }
 
-// Keyboard Navigation Handler
-class KeyboardNavigation {
-  constructor() {
-    this.init();
-  }
-
-  init() {
-    // Handle escape key for accessibility
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        // Close any open modals or menus
-        this.closeAllModals();
-        // Remove focus from active element if it's not essential
-        if (document.activeElement &&
-            !document.activeElement.matches('input, textarea, select, [contenteditable]')) {
-          document.activeElement.blur();
-        }
-      }
-    });
-
-    // Improve skip link functionality
-    const skipLink = document.querySelector('.skip-link');
-    if (skipLink) {
-      skipLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.querySelector('#main-content');
-        if (target) {
-          target.setAttribute('tabindex', '-1');
-          target.focus();
-          target.scrollIntoView({ behavior: 'smooth' });
-          // Remove tabindex after focus to prevent confusion
-          setTimeout(() => target.removeAttribute('tabindex'), 100);
-        }
-      });
-    }
-
-    // Announce theme changes to screen readers
-    this.setupThemeAnnouncements();
-  }
-
-  setupThemeAnnouncements() {
-    // Create a live region for announcements
-    const announcer = document.createElement('div');
-    announcer.setAttribute('aria-live', 'polite');
-    announcer.setAttribute('aria-atomic', 'true');
-    announcer.style.cssText = 'position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden;';
-    announcer.id = 'theme-announcer';
-    document.body.appendChild(announcer);
-  }
-
-  announceThemeChange(theme) {
-    const announcer = document.getElementById('theme-announcer');
-    if (announcer) {
-      announcer.textContent = `Theme changed to ${theme} mode`;
-    }
-  }
-
-  closeAllModals() {
-    // Close any open modals, dropdowns, or collapsible content
-    const openCollapses = document.querySelectorAll('.collapse.show');
-    openCollapses.forEach(collapse => {
-      if (window.bootstrap && window.bootstrap.Collapse) {
-        const bsCollapse = window.bootstrap.Collapse.getInstance(collapse);
-        if (bsCollapse) bsCollapse.hide();
-      }
-    });
-  }
-}
-
 // App Initialization
 class App {
   constructor() {
@@ -1067,7 +1001,7 @@ class App {
   init() {
     // Show loading indicator
     this.showLoadingIndicator();
-    
+
     if (document.readyState === "loading") {
       document.addEventListener(
         "DOMContentLoaded",
@@ -1080,9 +1014,9 @@ class App {
 
   showLoadingIndicator() {
     // Add loading styles if not already present
-    if (!document.getElementById('loading-styles')) {
-      const loadingStyles = document.createElement('style');
-      loadingStyles.id = 'loading-styles';
+    if (!document.getElementById("loading-styles")) {
+      const loadingStyles = document.createElement("style");
+      loadingStyles.id = "loading-styles";
       loadingStyles.textContent = `
         .page-loading {
           opacity: 0;
@@ -1121,7 +1055,7 @@ class App {
     }
 
     // Add loading class to body
-    document.body.classList.add('page-loading');
+    document.body.classList.add("page-loading");
   }
 
   hideLoadingIndicator() {
@@ -1129,15 +1063,15 @@ class App {
     const minLoadingTime = 500;
     const elapsedTime = Date.now() - this.loadingStartTime;
     const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
-    
+
     setTimeout(() => {
-      document.body.classList.remove('page-loading');
-      document.body.classList.add('page-loaded');
-      
+      document.body.classList.remove("page-loading");
+      document.body.classList.add("page-loaded");
+
       // Remove loading overlay if it exists
-      const loadingOverlay = document.querySelector('.loading-overlay');
+      const loadingOverlay = document.querySelector(".loading-overlay");
       if (loadingOverlay) {
-        loadingOverlay.style.opacity = '0';
+        loadingOverlay.style.opacity = "0";
         setTimeout(() => {
           if (loadingOverlay.parentNode) {
             loadingOverlay.parentNode.removeChild(loadingOverlay);
@@ -1149,9 +1083,6 @@ class App {
 
   initializeComponents() {
     try {
-      // Initialize accessibility components first
-      window.keyboardNav = new KeyboardNavigation();
-
       // Initialize core components
       new ThemeManager();
       new NavigationManager();
@@ -1185,10 +1116,10 @@ class App {
 
       // Add loading animation to page elements
       this.animatePageLoad();
-      
+
       // Hide loading indicator after initialization
       this.hideLoadingIndicator();
-      
+
       console.log("Portfolio initialized successfully");
     } catch (error) {
       console.error("Error initializing portfolio:", error);
@@ -1227,7 +1158,7 @@ class App {
           localStorage.setItem("theme", selectedTheme);
 
           // Update active state
-          themeOptions.forEach(opt => opt.classList.remove("active"));
+          themeOptions.forEach((opt) => opt.classList.remove("active"));
           option.classList.add("active");
         });
       });
