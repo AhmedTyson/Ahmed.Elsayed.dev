@@ -1059,6 +1059,11 @@ body {
   margin-bottom: 1rem;
 }
 
+/* Center project overlay buttons */
+.project-overlay-content .d-flex {
+  justify-content: center;
+}
+
 /* Card Body Styles */
 .project-card .card-body {
   padding: 1.5rem;
@@ -1099,24 +1104,6 @@ body {
   background-color: var(--bg-secondary) !important;
   color: var(--text-secondary) !important;
   border-color: var(--border-color);
-}
-
-/* Project Actions */
-.project-actions {
-  margin-top: auto;
-  padding-top: 1rem;
-}
-
-.project-actions .btn {
-  font-size: 0.85rem;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.project-actions .btn:hover {
-  transform: translateY(-1px);
 }
 
 /* Portfolio Filter Styles */
@@ -3075,9 +3062,6 @@ h6,
   color: var(--text-primary) !important;
 }
 
-
-
-
 [data-theme="gradient"] .badge.bg-light.text-dark {
   background: rgba(255, 255, 255, 0.08) !important;
   color: var(--text-primary) !important;
@@ -3086,14 +3070,14 @@ h6,
 @media (max-width: 768px) {
   [data-theme="gradient"] .navbar {
     background: linear-gradient(135deg, #181c2f 80%, #3a185c 100%);
-    border-bottom: 1px solid rgba(255,255,255,0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     color: #eaeaea !important;
   }
   [data-theme="gradient"] .navbar-collapse {
     background: #181c2f;
     color: #eaeaea;
     border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   }
   [data-theme="gradient"] .nav-link {
     color: #bdbdbd !important;
