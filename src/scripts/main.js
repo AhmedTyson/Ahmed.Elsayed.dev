@@ -501,7 +501,7 @@ class CVDownloadManager {
   }
 
   downloadCV() {
-    const filePath = "./assets/Ahmed_Elsayed_NET_Developer_CV.pdf"; // ensure this file exists
+    const filePath = "/public/assets/documents/Ahmed_Elsayed_NET_Developer_CV.pdf"; // ensure this file exists
 
     const link = document.createElement("a");
     link.href = filePath;
