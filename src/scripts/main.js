@@ -502,7 +502,7 @@ class CVDownloadManager {
 
   downloadCV() {
     const filePath =
-      "public/assets/documents/Ahmed_Elsayed_NET_Developer_CV.pdf"; // ensure this file exists
+      "public/assets/documents/Ahmed_Elsayed_NET_Developer_CV.pdf"; // relative path
 
     const link = document.createElement("a");
     link.href = filePath;
@@ -1238,4 +1238,5 @@ class App {
 new App();
 
 // Mobile project navigation scroll handler (handled in ProjectPageNavigation class)
+// This duplicate handler has been removed to prevent conflicts
 // This duplicate handler has been removed to prevent conflicts
