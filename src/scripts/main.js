@@ -1236,58 +1236,84 @@ class LocationPopover {
   }
 }
 
-// CV text popup manager (mobile and desktop)
-class CVTextPopup {
+// Popup for elements with class "cv-summary"
+class CVSummaryPopup {
   constructor() {
+    this.items = document.querySelectorAll(".cv-summary");
     this.modal = document.getElementById("text-modal");
-    this.body = this.modal?.querySelector(".text-modal-body");
-    this.closeEls = this.modal?.querySelectorAll(
-      "[data-close],.text-modal-close"
+    if (!this.items.length || !this.modal) return;
+    this.titleEl = this.modal.querySelector(".text-modal-title");
+    this.bodyEl = this.modal.querySelector(".text-modal-body");
+    this.closeBtns = this.modal.querySelectorAll(
+      ".text-modal-close,[data-close]"
     );
-    if (!this.modal || !this.body) return;
+    this.activeTrigger = null;
     this.bind();
   }
   bind() {
-    const targets = document.querySelectorAll(
-      "#cv .cv-summary p, #cv .cert-description, #cv .education-item p, #cv .education-gpa, #cv .education-school"
-    );
-    targets.forEach((el) => {
-      el.style.cursor = "pointer";
-      el.setAttribute("tabindex", "0");
-      el.addEventListener("click", () => this.open(el.textContent.trim()));
-      el.addEventListener("keydown", (e) => {
+    this.items.forEach((item) => {
+      item.setAttribute("role", "button");
+      item.setAttribute("tabindex", "0");
+      item.setAttribute("aria-haspopup", "dialog");
+      item.setAttribute("aria-controls", "text-modal");
+      item.setAttribute("aria-expanded", "false");
+      item.style.cursor = "pointer";
+      const open = (e) => {
+        if (
+          e &&
+          e.target.closest &&
+          e.target.closest("a,button,input,textarea")
+        )
+          return;
+        this.open(item);
+      };
+      item.addEventListener("click", open);
+      item.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          this.open(el.textContent.trim());
+          open(e);
         }
       });
     });
 
-    this.closeEls.forEach((el) =>
-      el.addEventListener("click", () => this.close())
-    );
     this.modal.addEventListener("click", (e) => {
-      const t = e.target;
       if (
-        t instanceof Element &&
-        (t.classList.contains("text-modal") || t.dataset.close === "true")
+        e.target === this.modal ||
+        e.target.classList.contains("text-modal-backdrop")
       )
         this.close();
     });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") this.close();
+      if (e.key === "Escape" && this.modal.classList.contains("show"))
+        this.close();
     });
+    this.closeBtns.forEach((btn) =>
+      btn.addEventListener("click", () => this.close())
+    );
   }
-  open(text) {
-    this.body.textContent = text;
+  open(item) {
+    const title = item.getAttribute("data-title") || "Summary";
+    if (this.titleEl) this.titleEl.textContent = title;
+    if (this.bodyEl) this.bodyEl.innerHTML = item.innerHTML.trim();
     this.modal.classList.add("show");
     this.modal.removeAttribute("aria-hidden");
     document.body.style.overflow = "hidden";
+    item.setAttribute("aria-expanded", "true");
+    this.activeTrigger = item;
+    const firstClose = this.closeBtns[0];
+    if (firstClose) firstClose.focus();
   }
   close() {
     this.modal.classList.remove("show");
     this.modal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+    if (this.activeTrigger) {
+      this.activeTrigger.setAttribute("aria-expanded", "false");
+      try {
+        this.activeTrigger.focus();
+      } catch {}
+      this.activeTrigger = null;
+    }
   }
 }
 
@@ -1397,7 +1423,7 @@ class App {
       new ProjectPageNavigation();
       new ContactFormManager();
       new LocationPopover();
-      new CVTextPopup();
+      new CVSummaryPopup(); // added
 
       // Initialize typing animation
       if (typingText) {
@@ -1529,6 +1555,56 @@ class App {
       });
     }
   }
+}
+
+// Initialize the application
+new App();
+
+// Mobile project navigation scroll handler (handled in ProjectPageNavigation class)
+// This duplicate handler has been removed to prevent conflicts
+// This duplicate handler has been removed to prevent conflicts
+
+// Basic smooth scrolling fallback
+if (navLinks.length > 0) {
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const href = link.getAttribute("href");
+      if (href && href.startsWith("#")) {
+        const targetId = href.slice(1);
+        const targetSection = document.getElementById(targetId);
+
+        if (targetSection) {
+          const navHeight = 80;
+          const targetTop = targetSection.offsetTop - navHeight;
+
+          window.scrollTo({
+            top: targetTop,
+            behavior: "smooth",
+          });
+        }
+      }
+    });
+  });
+}
+
+// Basic CV download fallback
+if (downloadCvBtn) {
+  downloadCvBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    alert(
+      "CV download feature is being prepared. Please contact me directly at ahmed.elsayed.abdelal.2025@gmail.com for my latest CV."
+    );
+  });
+}
+
+if (downloadResumeBtn) {
+  downloadResumeBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    alert(
+      "CV download feature is being prepared. Please contact me directly at ahmed.elsayed.abdelal.2025@gmail.com for my latest CV."
+    );
+  });
 }
 
 // Initialize the application
