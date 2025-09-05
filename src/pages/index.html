@@ -17,6 +17,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/contact-form.css" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   </head>
   <body data-theme="light">
@@ -355,11 +356,7 @@
             <p class="section-subtitle">
               Comprehensive overview of my professional journey
             </p>
-            <div class="cv-actions">
-              <button class="btn btn-primary" id="download-cv">
-                Download CV
-              </button>
-            </div>
+            <!-- CV download removed as requested -->
           </div>
 
           <div class="cv-content">
@@ -1117,56 +1114,79 @@
                 href="mailto:ahmed.elsayed.abdelal.2025@gmail.com"
                 class="contact-cta"
               >
-                <i class="fa-solid fa-paper-plane"></i>
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="24" height="24">
+                  <path fill="currentColor" d="M2 21l20.5-9L2 3v7l15 2-15 2v7z"/>
+                </svg>
                 Let's Start a Conversation
               </a>
             </div>
 
-            <div class="contact-cards">
-              <a
-                href="mailto:ahmed.elsayed.abdelal.2025@gmail.com"
-                class="contact-card"
-              >
-                <div class="contact-card-icon">
-                  <i class="fa-solid fa-envelope"></i>
-                </div>
-                <h3 class="contact-card-title">Email</h3>
-                <p class="contact-card-text">
-                  ahmed.elsayed.abdelal.2025@gmail.com
-                </p>
+            <div class="contact-icons" aria-label="Quick contact links">
+              <a href="mailto:ahmed.elsayed.abdelal.2025@gmail.com" class="icon-btn" aria-label="Email">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+                  <path d="M22 6 12 13 2 6"></path>
+                </svg>
               </a>
-
-              <a
-                href="https://github.com/AhmedTyson"
-                target="_blank"
-                class="contact-card"
-              >
-                <div class="contact-card-icon">
-                  <i class="fa-brands fa-github"></i>
-                </div>
-                <h3 class="contact-card-title">GitHub</h3>
-                <p class="contact-card-text">View my repositories</p>
+              <a href="https://github.com/AhmedTyson" target="_blank" rel="noopener" class="icon-btn" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+                  <path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.32 6.84 9.67.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.1-1.49-1.1-1.49-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.64-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.38 9.38 0 0 1 12 6.8c.85 0 1.71.12 2.51.35 1.9-1.32 2.74-1.05 2.74-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.58.69.48A10.03 10.03 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/>
+                </svg>
               </a>
-
-              <a
-                href="https://linkedin.com/in/ahmed-elsayed-8b9bba28a"
-                target="_blank"
-                class="contact-card"
-              >
-                <div class="contact-card-icon">
-                  <i class="fa-brands fa-linkedin"></i>
-                </div>
-                <h3 class="contact-card-title">LinkedIn</h3>
-                <p class="contact-card-text">Professional network</p>
+              <a href="https://linkedin.com/in/ahmed-elsayed-8b9bba28a" target="_blank" rel="noopener" class="icon-btn" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+                  <path fill="currentColor" d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.5 8h4v15h-4V8zm7 0h3.8v2.05h.05C12 8.93 13.31 8 15.27 8 19.33 8 20.07 10.67 20.07 14.14V23h-4v-6.52c0-1.56-.03-3.57-2.18-3.57-2.18 0-2.51 1.7-2.51 3.45V23h-4V8z"/>
+                </svg>
               </a>
-
-              <div class="contact-card location-card">
-                <div class="contact-card-icon">
-                  <i class="fa-solid fa-location-dot"></i>
+              <div class="icon-popover">
+                <button type="button" class="icon-btn location-trigger" aria-haspopup="dialog" aria-expanded="false" aria-controls="location-popover" title="Show location" aria-label="Show location">
+                  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M12 2C8.13 2 5 5.1 5 9c0 5.1 7 13 7 13s7-7.9 7-13c0-3.9-3.13-7-7-7zm0 10.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z"/>
+                  </svg>
+                </button>
+                <div id="location-popover" class="location-popover" role="dialog" aria-modal="false" aria-label="Location">
+                  <div class="location-popover-arrow" aria-hidden="true"></div>
+                  <div class="location-popover-content">
+                    <strong>Location</strong>
+                    <p>Qalyubia, Egypt</p>
+                  </div>
                 </div>
-                <h3 class="contact-card-title">Location</h3>
-                <p class="contact-card-text">Qalyubia, Egypt</p>
               </div>
+            </div>
+
+            <div class="contact-form-panel" aria-labelledby="contact-form-title">
+              <h3 id="contact-form-title" class="contact-form-heading">Send a Message</h3>
+              <form id="contact-form" class="contact-form" method="POST" novalidate>
+                <div class="form-grid">
+                  <div class="form-field">
+                    <label for="cf-name" class="form-label">Name</label>
+                    <input type="text" id="cf-name" name="name" class="form-input" autocomplete="name" required />
+                    <p class="field-error" aria-live="polite"></p>
+                  </div>
+                  <div class="form-field">
+                    <label for="cf-email" class="form-label">Email</label>
+                    <input type="email" id="cf-email" name="email" class="form-input" autocomplete="email" inputmode="email" required />
+                    <p class="field-error" aria-live="polite"></p>
+                  </div>
+                  <div class="form-field form-field-full">
+                    <label for="cf-subject" class="form-label">Subject</label>
+                    <input type="text" id="cf-subject" name="subject" class="form-input" required />
+                    <p class="field-error" aria-live="polite"></p>
+                  </div>
+                  <div class="form-field form-field-full">
+                    <label for="cf-message" class="form-label">Message</label>
+                    <textarea id="cf-message" name="message" class="form-textarea" rows="5" required></textarea>
+                    <p class="field-error" aria-live="polite"></p>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary contact-submit-btn">
+                    <span class="submit-text">Send Message</span>
+                    <span class="submit-spinner" aria-hidden="true"></span>
+                  </button>
+                  <p id="contact-form-status" class="form-status" role="status" aria-live="polite"></p>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -1183,6 +1203,16 @@
       </div>
     </footer>
 
+    <!-- Text Modal -->
+    <div id="text-modal" class="text-modal" role="dialog" aria-modal="true" aria-labelledby="text-modal-title" aria-hidden="true">
+      <div class="text-modal-backdrop" data-close="true"></div>
+      <div class="text-modal-dialog" role="document">
+        <button class="text-modal-close" aria-label="Close" data-close="true">×</button>
+        <h3 id="text-modal-title" class="text-modal-title">Details</h3>
+        <div class="text-modal-body"></div>
+      </div>
+    </div>
+
     <!-- Back to top button -->
     <a href="#" class="back-to-top" aria-label="Back to top">
       <i class="fa-solid fa-arrow-up"></i>
@@ -1193,5 +1223,3 @@
     <script src="../scripts/main.js"></script>
   </body>
 </html>
-
-

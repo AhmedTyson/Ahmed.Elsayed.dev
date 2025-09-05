@@ -500,56 +500,96 @@ class CVDownloadManager {
     }
   }
 
-  downloadCV() {
+  async downloadCV() {
     const filePath =
       "public/assets/documents/Ahmed_Elsayed_NET_Developer_CV.pdf"; // relative path
 
-    const link = document.createElement("a");
-    link.href = filePath;
-    link.setAttribute("download", "Ahmed_Elsayed_NET_Developer_CV.pdf");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Disable buttons while processing
+    this.setDisabled(true);
 
-    this.showDownloadMessage();
+    try {
+      // Try to fetch the file to ensure it exists and get a blob for a reliable download
+      const response = await fetch(filePath, { cache: "no-store" });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch file: ${response.status}`);
+      }
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "Ahmed_Elsayed_NET_Developer_CV.pdf");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Revoke object URL after a short delay to ensure download started
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+
+      this.showDownloadMessage("CV downloaded successfully!", "success");
+    } catch (err) {
+      console.error("CV download error:", err);
+      this.showDownloadMessage(
+        "Failed to download CV. Please try again later or contact ahmed.elsayed.abdelal.2025@gmail.com",
+        "error"
+      );
+    } finally {
+      this.setDisabled(false);
+    }
   }
 
-  showDownloadMessage() {
-    // Create temporary success message
-    const message = document.createElement("div");
-    message.textContent = "CV downloaded successfully!";
-    message.style.cssText = `
-                    position: fixed;
-                    top: 100px;
-                    right: 20px;
-                    background: #28a745;
-                    color: white;
-                    padding: 12px 24px;
-                    border-radius: 6px;
-                    font-weight: 500;
-                    z-index: 9999;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                    animation: slideIn 0.3s ease-out;
-                `;
+  setDisabled(isDisabled) {
+    if (downloadCvBtn) {
+      downloadCvBtn.disabled = isDisabled;
+      downloadCvBtn.classList.toggle("disabled", isDisabled);
+    }
+    if (downloadResumeBtn) {
+      downloadResumeBtn.disabled = isDisabled;
+      downloadResumeBtn.classList.toggle("disabled", isDisabled);
+    }
+  }
 
-    const style = document.createElement("style");
-    style.textContent = `
-                    @keyframes slideIn {
-                        from { transform: translateX(100%); opacity: 0; }
-                        to { transform: translateX(0); opacity: 1; }
-                    }
-                `;
-    document.head.appendChild(style);
-    document.body.appendChild(message);
+  showDownloadMessage(
+    message = "CV downloaded successfully!",
+    type = "success"
+  ) {
+    // Create temporary message element
+    const messageEl = document.createElement("div");
+    messageEl.textContent = message;
+    messageEl.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: ${type === "success" ? "#28a745" : "#dc3545"};
+      color: white;
+      padding: 12px 18px;
+      border-radius: 6px;
+      font-weight: 500;
+      z-index: 9999;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      animation: slideIn 0.3s ease-out;
+    `;
+
+    // Ensure keyframes exist only once
+    if (!document.getElementById("cv-download-msg-styles")) {
+      const style = document.createElement("style");
+      style.id = "cv-download-msg-styles";
+      style.textContent = `
+        @keyframes slideIn {
+          from { transform: translateX(100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    document.body.appendChild(messageEl);
 
     setTimeout(() => {
-      if (message.parentNode) {
-        message.parentNode.removeChild(message);
-      }
-      if (style.parentNode) {
-        style.parentNode.removeChild(style);
-      }
-    }, 3000);
+      if (messageEl.parentNode) messageEl.parentNode.removeChild(messageEl);
+    }, 3500);
   }
 }
 
@@ -997,6 +1037,260 @@ class ProjectPageNavigation {
   }
 }
 
+// Contact Form Manager
+class ContactFormManager {
+  constructor() {
+    this.form = document.getElementById("contact-form");
+    if (!this.form) return;
+    this.statusEl = document.getElementById("contact-form-status");
+    this.submitBtn = this.form.querySelector(".contact-submit-btn");
+    this.inputs = this.form.querySelectorAll(".form-input, .form-textarea");
+    this.attachEvents();
+  }
+
+  attachEvents() {
+    this.form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this.handleSubmit();
+    });
+
+    this.inputs.forEach((input) => {
+      // initialize filled state
+      this.toggleFilled(input);
+      input.addEventListener("blur", () => this.validateField(input));
+      input.addEventListener("input", () => {
+        this.clearFieldError(input);
+        this.toggleFilled(input);
+      });
+    });
+  }
+
+  toggleFilled(input) {
+    const wrapper = input.closest(".form-field");
+    if (!wrapper) return;
+    const value = input.value.trim();
+    if (value) wrapper.classList.add("has-value");
+    else wrapper.classList.remove("has-value");
+  }
+
+  validateField(input) {
+    const wrapper = input.closest(".form-field");
+    if (!wrapper) return true;
+    let valid = true;
+    let message = "";
+
+    const value = input.value.trim();
+    if (input.hasAttribute("required") && !value) {
+      valid = false;
+      message = "This field is required.";
+    } else if (input.type === "email" && value) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        valid = false;
+        message = "Please enter a valid email address.";
+      }
+    } else if (input.id === "cf-message" && value.length < 10) {
+      valid = false;
+      message = "Please provide more details (at least 10 characters).";
+    }
+
+    if (!valid) {
+      wrapper.classList.add("invalid");
+      const errorEl = wrapper.querySelector(".field-error");
+      if (errorEl) errorEl.textContent = message;
+    } else {
+      wrapper.classList.remove("invalid");
+    }
+
+    return valid;
+  }
+
+  clearFieldError(input) {
+    const wrapper = input.closest(".form-field");
+    if (!wrapper) return;
+    wrapper.classList.remove("invalid");
+    const errorEl = wrapper.querySelector(".field-error");
+    if (errorEl) errorEl.textContent = "";
+  }
+
+  validateForm() {
+    let allValid = true;
+    this.inputs.forEach((input) => {
+      if (!this.validateField(input)) allValid = false;
+    });
+    return allValid;
+  }
+
+  async handleSubmit() {
+    if (!this.validateForm()) {
+      this.showStatus(
+        "Please fix the highlighted fields and try again.",
+        "error"
+      );
+      const firstInvalid = this.form.querySelector(
+        ".form-field.invalid .form-input, .form-field.invalid .form-textarea"
+      );
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    const endpoint =
+      this.form.getAttribute("action") || this.form.dataset.endpoint;
+
+    if (!endpoint) {
+      this.showStatus(
+        "Submission endpoint not configured. Set the form action or data-endpoint to integrate your backend.",
+        "error"
+      );
+      return;
+    }
+
+    try {
+      this.setSubmitting(true);
+
+      const formData = new FormData(this.form);
+      const emailVal = this.form.querySelector("#cf-email")?.value.trim() || "";
+      const subjectVal =
+        this.form.querySelector("#cf-subject")?.value.trim() || "";
+      if (emailVal) formData.set("_replyto", emailVal);
+      if (subjectVal)
+        formData.set("_subject", `Portfolio contact: ${subjectVal}`);
+
+      const response = await fetch(endpoint, {
+        method: (this.form.getAttribute("method") || "POST").toUpperCase(),
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (!response.ok) throw new Error("Network response was not ok");
+
+      this.form.reset();
+      this.showStatus("Thanks! Your message was sent successfully.", "success");
+    } catch (err) {
+      this.showStatus(
+        "Something went wrong sending your message. Please try again later.",
+        "error"
+      );
+      console.error("Contact form submission error:", err);
+    } finally {
+      this.setSubmitting(false);
+    }
+  }
+
+  setSubmitting(isSubmitting) {
+    if (!this.submitBtn) return;
+    if (isSubmitting) {
+      this.submitBtn.classList.add("submitting");
+      this.submitBtn.setAttribute("disabled", "true");
+    } else {
+      this.submitBtn.classList.remove("submitting");
+      this.submitBtn.removeAttribute("disabled");
+    }
+  }
+
+  showStatus(message, type) {
+    if (!this.statusEl) return;
+    this.statusEl.textContent = message;
+    this.statusEl.classList.remove("success", "error");
+    if (type) this.statusEl.classList.add(type);
+  }
+}
+
+// Location popover manager
+class LocationPopover {
+  constructor() {
+    this.wrap = document.querySelector(".icon-popover");
+    this.trigger = document.querySelector(".location-trigger");
+    this.panel = document.getElementById("location-popover");
+    if (!this.wrap || !this.trigger || !this.panel) return;
+    this.open = false;
+    this.bind();
+  }
+  bind() {
+    // Click toggle
+    this.trigger.addEventListener("click", (e) => {
+      e.preventDefault();
+      this.toggle();
+    });
+    // Dismiss on outside click
+    document.addEventListener("click", (e) => {
+      if (!this.wrap.contains(e.target)) this.close();
+    });
+    // Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") this.close();
+    });
+  }
+  toggle() {
+    this.open ? this.close() : this.show();
+  }
+  show() {
+    this.panel.classList.add("open");
+    this.trigger.setAttribute("aria-expanded", "true");
+    this.open = true;
+  }
+  close() {
+    this.panel.classList.remove("open");
+    this.trigger.setAttribute("aria-expanded", "false");
+    this.open = false;
+  }
+}
+
+// CV text popup manager (mobile and desktop)
+class CVTextPopup {
+  constructor() {
+    this.modal = document.getElementById("text-modal");
+    this.body = this.modal?.querySelector(".text-modal-body");
+    this.closeEls = this.modal?.querySelectorAll(
+      "[data-close],.text-modal-close"
+    );
+    if (!this.modal || !this.body) return;
+    this.bind();
+  }
+  bind() {
+    const targets = document.querySelectorAll(
+      "#cv .cv-summary p, #cv .cert-description, #cv .education-item p, #cv .education-gpa, #cv .education-school"
+    );
+    targets.forEach((el) => {
+      el.style.cursor = "pointer";
+      el.setAttribute("tabindex", "0");
+      el.addEventListener("click", () => this.open(el.textContent.trim()));
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          this.open(el.textContent.trim());
+        }
+      });
+    });
+
+    this.closeEls.forEach((el) =>
+      el.addEventListener("click", () => this.close())
+    );
+    this.modal.addEventListener("click", (e) => {
+      const t = e.target;
+      if (
+        t instanceof Element &&
+        (t.classList.contains("text-modal") || t.dataset.close === "true")
+      )
+        this.close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") this.close();
+    });
+  }
+  open(text) {
+    this.body.textContent = text;
+    this.modal.classList.add("show");
+    this.modal.removeAttribute("aria-hidden");
+    document.body.style.overflow = "hidden";
+  }
+  close() {
+    this.modal.classList.remove("show");
+    this.modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+}
+
 // App Initialization
 class App {
   constructor() {
@@ -1101,6 +1395,9 @@ class App {
       new PortfolioFilter();
       new PhotoUploadManager();
       new ProjectPageNavigation();
+      new ContactFormManager();
+      new LocationPopover();
+      new CVTextPopup();
 
       // Initialize typing animation
       if (typingText) {

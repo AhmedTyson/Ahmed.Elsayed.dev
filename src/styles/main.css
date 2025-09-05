@@ -1533,40 +1533,60 @@ body {
 
 .certifications-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-lg);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+  align-items: stretch;
 }
 
 .cert-item {
-  background: var(--bg-secondary);
-  padding: var(--space-lg);
-  border-radius: var(--radius-md);
+  position: relative;
+  background: linear-gradient(180deg, var(--bg-card), var(--bg-secondary));
+  padding: calc(var(--space-lg) + 2px);
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border-color);
   transition: var(--transition);
+  overflow: hidden;
+}
+.cert-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .cert-item:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.12);
 }
 
 .cert-name {
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   line-height: 1.3;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .cert-duration {
-  background: var(--color-interactive);
-  color: var(--color-dark);
-  padding: 0.25rem 0.75rem;
+  background: rgba(var(--color-primary-rgb), .12);
+  color: var(--color-primary);
+  padding: 0.25rem 0.6rem;
   border-radius: var(--radius-full);
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 600;
   display: inline-block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
+  border: 1px solid rgba(var(--color-primary-rgb), .25);
 }
 
 .cert-provider {
@@ -1577,7 +1597,7 @@ body {
 
 .cert-description {
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.7;
   font-size: 0.95rem;
 }
 
@@ -2215,6 +2235,16 @@ body {
   margin-top: var(--space-2xl);
 }
 
+/* Text Modal */
+.text-modal { position: fixed; inset: 0; display: none; z-index: 1050; }
+.text-modal.show { display: block; }
+.text-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.4); backdrop-filter: blur(2px); }
+.text-modal-dialog { position: relative; margin: 10vh auto; max-width: 680px; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); padding: var(--space-lg); }
+.text-modal-title { margin: 0 0 .5rem; font-size: 1.1rem; font-weight: 700; }
+.text-modal-body { line-height: 1.7; color: var(--text-secondary); }
+.text-modal-close { position: absolute; top: .5rem; right: .75rem; border: 0; background: transparent; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; }
+@media (max-width: 640px) { .text-modal-dialog { margin: 12vh 1rem; padding: var(--space-md); } }
+
 .footer-text {
   color: var(--text-secondary);
   font-size: 0.9rem;
@@ -2245,6 +2275,44 @@ body {
 
 [data-theme="gradient"] .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Compact mobile layout (<=640px) */
+@media (max-width: 640px) {
+  .section { padding: var(--space-lg) 0; }
+  .section-header { margin-bottom: var(--space-lg); }
+  .cv-content { grid-template-columns: 1fr !important; gap: var(--space-lg); }
+  .cv-section { padding: var(--space-lg); border-radius: var(--radius-md); }
+  .cv-section-title { font-size: 1.2rem; margin-bottom: .75rem; }
+
+  /* Open accordions and simplify UI */
+  #cv .accordion-button { display: none; }
+  #cv .accordion-item { border: 0; background: transparent; box-shadow: none; margin: 0; }
+  #cv .accordion-collapse { display: block !important; height: auto !important; visibility: visible !important; }
+  #cv .accordion-body { padding: 0; background: transparent; }
+
+  /* Tight chips and grids */
+  .languages-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
+  .language-item { background: transparent; border: 0; padding: .25rem 0; justify-content: flex-start; gap: .5rem; }
+  .language-level { font-size: .7rem; padding: .15rem .5rem; }
+
+  .certifications-grid { grid-template-columns: 1fr; gap: var(--space-sm); }
+  .cert-name { font-size: 1rem; }
+  .cert-description { font-size: 0.9rem; line-height: 1.6; }
+
+  /* Clamp long text to 2 lines for readability */
+  .cv-summary p,
+  .cert-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Education layout */
+  .education-header { flex-direction: column; align-items: flex-start; gap: .25rem; }
+  .coursework-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .4rem; }
+  .coursework-list li { font-size: .8rem; padding: .35rem .6rem; }
 }
 
 /* Mobile-first Hero Section Adjustments */
