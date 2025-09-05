@@ -1406,26 +1406,23 @@
     <script>
       (function () {
         const modal = document.getElementById("text-modal");
-        const modalTitle = modal && modal.querySelector("#text-modal-title");
-        const modalBody = modal && modal.querySelector(".text-modal-body");
-        const closeEls = modal
-          ? modal.querySelectorAll("[data-close], .text-modal-close")
-          : [];
-        const backdrop = modal
-          ? modal.querySelector(".text-modal-backdrop")
-          : null;
-        let activeTrigger = null;
+        if (!modal) return;
 
-        if (!modal || !modalTitle || !modalBody) return;
+        const modalTitle = modal.querySelector("#text-modal-title");
+        const modalBody = modal.querySelector(".text-modal-body");
+        const closeEls = modal.querySelectorAll(
+          "[data-close], .text-modal-close"
+        );
+        const backdrop = modal.querySelector(".text-modal-backdrop");
+        let activeTrigger = null;
 
         function openModal(trigger, titleHtml, bodyHtml) {
           activeTrigger = trigger || null;
-          if (activeTrigger) {
+          if (activeTrigger)
             activeTrigger.setAttribute("aria-expanded", "true");
-          }
 
-          modalTitle.innerHTML = titleHtml;
-          modalBody.innerHTML = bodyHtml;
+          if (modalTitle) modalTitle.innerHTML = titleHtml;
+          if (modalBody) modalBody.innerHTML = bodyHtml;
 
           modal.classList.add("show");
           modal.removeAttribute("aria-hidden");
@@ -1449,7 +1446,7 @@
           }
         }
 
-        // wire global close controls
+        // global close handlers
         closeEls.forEach((el) => el.addEventListener("click", closeModal));
         modal.addEventListener("click", (e) => {
           if (e.target === modal || e.target === backdrop) closeModal();
@@ -1458,11 +1455,12 @@
           if (e.key === "Escape") closeModal();
         });
 
-        // make each timeline-content open the modal with its details
-        const items = document.querySelectorAll(
-          ".timeline-item .timeline-content"
+        // Wire certificate items to open the text modal
+        const certItems = document.querySelectorAll(
+          ".certifications-grid .cert-item"
         );
-        items.forEach((item) => {
+        certItems.forEach((item) => {
+          // make accessible / focusable
           if (!item.hasAttribute("role")) item.setAttribute("role", "button");
           if (!item.hasAttribute("tabindex"))
             item.setAttribute("tabindex", "0");
@@ -1472,27 +1470,25 @@
           item.style.cursor = "pointer";
 
           function buildContent() {
-            const yearEl = item.querySelector(".timeline-year");
-            const eventEl = item.querySelector(".timeline-event");
-            const descEl = item.querySelector(".timeline-description");
+            const nameEl = item.querySelector(".cert-name");
+            const durEl = item.querySelector(".cert-duration");
+            const descEl = item.querySelector(".cert-description");
 
-            const titleParts = [];
-            if (yearEl && yearEl.textContent.trim())
-              titleParts.push(yearEl.textContent.trim());
-            if (eventEl && eventEl.textContent.trim())
-              titleParts.push(eventEl.textContent.trim());
-            const titleHtml = titleParts.join(" — ") || "Details";
-
+            const name = nameEl ? nameEl.textContent.trim() : "Certificate";
+            const duration = durEl ? durEl.textContent.trim() : "";
+            const titleHtml = duration ? `${name} — ${duration}` : name;
             const bodyHtml = descEl ? descEl.innerHTML : item.innerHTML;
             return { titleHtml, bodyHtml };
           }
 
+          // click (ignore interactive children)
           item.addEventListener("click", (e) => {
             if (e.target.closest("a, button, input, textarea")) return;
             const { titleHtml, bodyHtml } = buildContent();
             openModal(item, titleHtml, bodyHtml);
           });
 
+          // keyboard activation
           item.addEventListener("keydown", (e) => {
             if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
@@ -1558,6 +1554,111 @@
         });
         document.addEventListener("keydown", (e) => {
           if (e.key === "Escape") close();
+        });
+      })();
+    </script>
+
+    <!-- Add: make timeline-description open the text modal -->
+    <script>
+      (function () {
+        const modal = document.getElementById("text-modal");
+        if (!modal) return;
+
+        const modalTitle = modal.querySelector("#text-modal-title");
+        const modalBody = modal.querySelector(".text-modal-body");
+        const closeEls = modal.querySelectorAll(
+          "[data-close], .text-modal-close"
+        );
+        const backdrop = modal.querySelector(".text-modal-backdrop");
+        let activeTrigger = null;
+
+        function openModal(trigger, titleHtml, bodyHtml) {
+          activeTrigger = trigger || null;
+          if (activeTrigger)
+            activeTrigger.setAttribute("aria-expanded", "true");
+
+          if (modalTitle) modalTitle.innerHTML = titleHtml;
+          if (modalBody) modalBody.innerHTML = bodyHtml;
+
+          modal.classList.add("show");
+          modal.removeAttribute("aria-hidden");
+          document.body.style.overflow = "hidden";
+
+          const closeBtn = modal.querySelector(".text-modal-close");
+          if (closeBtn) closeBtn.focus();
+        }
+
+        function closeModal() {
+          modal.classList.remove("show");
+          modal.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+
+          if (activeTrigger) {
+            try {
+              activeTrigger.setAttribute("aria-expanded", "false");
+              activeTrigger.focus();
+            } catch (e) {}
+            activeTrigger = null;
+          }
+        }
+
+        // global close handlers (idempotent safe)
+        closeEls.forEach((el) => el.addEventListener("click", closeModal));
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal || e.target === backdrop) closeModal();
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") closeModal();
+        });
+
+        // Wire each .timeline-description to open the modal (click + keyboard)
+        const descriptions = document.querySelectorAll(".timeline-description");
+        descriptions.forEach((desc) => {
+          const item =
+            desc.closest(".timeline-item") ||
+            desc.closest(".timeline-content") ||
+            desc;
+          // use the description block as trigger for clarity
+          const triggerEl = desc;
+
+          // accessibility
+          if (!triggerEl.hasAttribute("role"))
+            triggerEl.setAttribute("role", "button");
+          if (!triggerEl.hasAttribute("tabindex"))
+            triggerEl.setAttribute("tabindex", "0");
+          triggerEl.setAttribute("aria-haspopup", "dialog");
+          triggerEl.setAttribute("aria-controls", "text-modal");
+          triggerEl.setAttribute("aria-expanded", "false");
+          triggerEl.style.cursor = "pointer";
+
+          function buildContent() {
+            const yearEl = item && item.querySelector(".timeline-year");
+            const eventEl = item && item.querySelector(".timeline-event");
+
+            const titleParts = [];
+            if (yearEl && yearEl.textContent.trim())
+              titleParts.push(yearEl.textContent.trim());
+            if (eventEl && eventEl.textContent.trim())
+              titleParts.push(eventEl.textContent.trim());
+            const titleHtml = titleParts.join(" — ") || "Details";
+
+            const bodyHtml = desc.innerHTML;
+            return { titleHtml, bodyHtml };
+          }
+
+          triggerEl.addEventListener("click", (e) => {
+            if (e.target.closest("a, button, input, textarea")) return;
+            const { titleHtml, bodyHtml } = buildContent();
+            openModal(triggerEl, titleHtml, bodyHtml);
+          });
+
+          triggerEl.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              const { titleHtml, bodyHtml } = buildContent();
+              openModal(triggerEl, titleHtml, bodyHtml);
+            }
+          });
         });
       })();
     </script>
