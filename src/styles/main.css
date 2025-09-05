@@ -533,11 +533,9 @@ body {
   object-fit: cover;
   border-radius: 50%;
   position: absolute;
-  top: 39px;
   left: 0;
   z-index: 2;
   display: block;
-  transform: scale(1.6);
 }
 
 .profile-fallback {
